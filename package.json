@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.1.10",
     "next": "latest",
     "react": "^17.0.2",
+    "react-scripts": "4.0.3",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
     "web-vitals": "^1.0.1"
@@ -16,9 +17,12 @@
     "dev": "next dev",
     "build": "next build", 
     "start": "next start",
-    "build": "react-scripts build",
     "test": "next test",
-    "eject": "next eject"
+    "eject": "next eject",
+    "react-start": "react-scripts start",
+    "react-build": "react-scripts build",
+    "react-test": "react-scripts test",
+    "react-eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
