@@ -17,7 +17,7 @@
     "build": "next build",
     "start": "next start",
     "test": "next test",
-    "eject": "next eject",
+    "eject": "next eject"
   },
   "eslintConfig": {
     "extends": [
