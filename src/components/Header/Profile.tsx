@@ -1,7 +1,11 @@
-import { Box, Avatar, Flex, Icon, HStack } from '@chakra-ui/react'
+import { Box, Avatar, Flex, Icon, HStack, Button } from '@chakra-ui/react'
 import { RiNotificationLine, RiUserAddLine } from 'react-icons/ri'
+import { useContext } from 'react'
+import { AuthContext, signOut } from '../../contexts/AuthContext'
 
 export function Profile() {
+    const { user } = useContext(AuthContext)
+
     return (
         <Flex
             align="center"
@@ -31,9 +35,10 @@ export function Profile() {
             <Flex direction="column">
                 <Box mr="4" align="center" padding="4">
                     <h4>Bart Simpson</h4>
-                    <small>Super Admin</small>
+                    <small>{user?.email}</small>
                 </Box>
             </Flex>
+            <Button onClick={signOut}>Sair</Button>
         </Flex>
       </Flex>
     )

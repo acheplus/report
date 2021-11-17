@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Box, Flex, Heading, Button, Text, Icon, Table, Thead, Tbody, Td, Tr, Th, Checkbox, Spinner } from '@chakra-ui/react'
+import { Box, Flex, Heading, Button, Text, Icon, Table, Thead, Tbody, Td, Tr, Th, Checkbox, Spinner, Link as ChakraLink } from '@chakra-ui/react'
 import { RiAddLine, RiPencilLine } from 'react-icons/ri'
 import { useState } from 'react'
 
@@ -7,11 +7,23 @@ import { Header } from '../../components/Header'
 import { Pagination } from '../../components/Pagination'
 import { Sidebar } from '../../components/Sidebar'
 import { useUsers } from '../../services/hooks/useUsers'
+// import { queryClient } from '../../services/mirage/queryClient'
+import { api } from '../../services/apiClient'
+import { withSSRAuth } from '../../utils/withSSRAuth'
 
 export default function UserList() {
     const [ page, setPage ] = useState(1)
     const { data, isLoading, isFetching, error } = useUsers(page)
 
+    async function handlePrefetchUser(userId: string) {
+        await queryClient.prefetchQuery(['user', userId], async () => {
+            const response = await api.get(`users/${userId}`)
+
+            return response.data
+        }, {
+            staleTime: 1000 * 60 * 10
+        })
+    }
     return (
         <Box>
             <Header />
@@ -71,11 +83,13 @@ export default function UserList() {
                                                 </Td>
                                                 <Td>
                                                     <Box>
-                                                        <Text fontWeight="bold">{user.name}</Text>
-                                                        <Text fontSize="sm" color="gray.300">{user.email}</Text>
+                                                        <ChakraLink color="purple.400" onMouseEnter={() => handlePrefetchUser(user.id)}>
+                                                            <Text fontWeight="bold">{user.name}</Text>
+                                                            <Text fontSize="sm" color="gray.300">{user.email}</Text>
+                                                        </ChakraLink>
                                                     </Box>
                                                 </Td>
-                                                <Td>{user.createdAt}</Td>
+                                                <Td>{user.created_at}</Td>
                                                 <Td>
                                                     <Link href="/users/create">
                                                         <Button
@@ -107,3 +121,11 @@ export default function UserList() {
         </Box>
     )
 }
+
+export const getServerSideProps = withSSRAuth(async(ctx) => {
+    return {
+        props: {}
+    }
+}, {
+    permissions: ['metrics.lista'] 
+})

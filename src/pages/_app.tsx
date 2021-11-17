@@ -4,23 +4,25 @@ import { theme } from '../styles/theme'
 import { makeServer } from '../services/mirage'
 import { ReactQueryDevtools } from 'react-query/devtools'
 
-import { QueryClientProvider, QueryClient } from 'react-query'
+import { QueryClientProvider } from 'react-query'
+import { queryClient } from '../services/mirage/queryClient'
+import { AuthProvider } from '../contexts/AuthContext'
 
-if(process.env.NODE_ENV === 'development'){
-  makeServer()
-}
-
-const queryClient = new QueryClient()
+// if(process.env.NODE_ENV === 'development'){
+//   makeServer()
+// }
 
 function AcheplusApp({ Component, pageProps }: AppProps) {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ChakraProvider theme={theme}>
-        <Component {...pageProps} />
-      </ChakraProvider>
+    <AuthProvider>
+      {/* <QueryClientProvider client={queryClient}> */}
+        <ChakraProvider theme={theme}>
+          <Component {...pageProps} />
+        </ChakraProvider>
 
-      <ReactQueryDevtools />
-    </QueryClientProvider>
+        {/* <ReactQueryDevtools /> */}
+      {/* </QueryClientProvider> */}
+    </AuthProvider>
   )
 }
 
