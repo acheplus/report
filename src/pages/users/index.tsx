@@ -7,7 +7,7 @@ import { Header } from '../../components/Header'
 import { Pagination } from '../../components/Pagination'
 import { Sidebar } from '../../components/Sidebar'
 import { useUsers } from '../../services/hooks/useUsers'
-// import { queryClient } from '../../services/mirage/queryClient'
+import { queryClient } from '../../services/mirage/queryClient'
 import { api } from '../../services/apiClient'
 import { withSSRAuth } from '../../utils/withSSRAuth'
 
@@ -42,7 +42,6 @@ export default function UserList() {
                             <Button
                             as="a"
                             size="sm"
-                            fontSize="sm"
                             colorScheme="green"
                             fontSize="20"
                             leftIcon={<Icon
@@ -95,7 +94,6 @@ export default function UserList() {
                                                         <Button
                                                             as="a"
                                                             size="sm"
-                                                            fontSize="sm"
                                                             colorScheme="purple"
                                                             fontSize="16"
                                                             leftIcon={<Icon

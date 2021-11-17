@@ -15,13 +15,13 @@ import { AuthProvider } from '../contexts/AuthContext'
 function AcheplusApp({ Component, pageProps }: AppProps) {
   return (
     <AuthProvider>
-      {/* <QueryClientProvider client={queryClient}> */}
+      <QueryClientProvider client={queryClient}>
         <ChakraProvider theme={theme}>
           <Component {...pageProps} />
         </ChakraProvider>
 
-        {/* <ReactQueryDevtools /> */}
-      {/* </QueryClientProvider> */}
+        <ReactQueryDevtools />
+      </QueryClientProvider>
     </AuthProvider>
   )
 }
