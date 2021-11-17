@@ -8,7 +8,7 @@ interface InputProps extends ChakraInputProps {
     error: FieldError;
 }
 
-export const Input: ForwardRefRenderFunction = forwardRef(({ name, label, error, ...rest }: InputProps, ref) => {
+export const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = ({ name, label, error, ...rest }: InputProps, ref) => {
     return (
         <FormControl isInvalid={!!error}>
             { !!label && <FormLabel htmlFor={name}>{label}</FormLabel> }
@@ -30,4 +30,4 @@ export const Input: ForwardRefRenderFunction = forwardRef(({ name, label, error,
                 )}
         </FormControl>
     )
-})
+}
