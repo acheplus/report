@@ -63,7 +63,7 @@ export default function Home() {
               color="#fff"
               margin="0 0 12px">
                 Ainda não tem acesso<br />
-                ao sistema? >
+                ao sistema? &gt;
                 <Link href="#" 
                   cursor="pointer"
                   textDecoration="underline"
@@ -93,16 +93,12 @@ export default function Home() {
                   name="email" type="email"
                   label="E-mail"
                   {...register('email')}
-                  align="center"
-                  br="5px"
                   placeholder="Digite um email"
                   />
                 <Input error={errors.password}
                   name="password" type="password"
                   label="Senha"
                   {...register('password')}
-                  align="center"
-                  br="5px"
                   placeholder="Digite sua senha"
                   />
             </Stack>
