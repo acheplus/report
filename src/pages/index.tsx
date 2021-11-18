@@ -1,4 +1,4 @@
-import { Flex, Button, Stack } from '@chakra-ui/react'
+import { Flex, Button, Stack, Heading, Image, Link } from '@chakra-ui/react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from "yup"
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
@@ -35,20 +35,76 @@ export default function Home() {
     <Flex
       w="100vw"
       h="100vh"
+      bg="#77d282"
       align="center"
       justify="center">
         <Flex
+          bg="#1b9b4e"
+          borderRadius="10px 0 0 10px"
+          flexDir="column"
+          padding="20px"
+          width="300px"
+          height="500px"
+          align="center">
+            <Heading as="h1" color="#fff"
+              fontSize="24px"
+              fontFamily="Roboto"
+              mt="80px">
+              Seja Bem Vindo à
+            </Heading>
+            <Image
+            w="110px"
+            h="140px"
+            mt="20px"
+            mb="50px" 
+            src="/assets/logo_acheb.png"  />
+            <Heading as="h5"
+              fontSize="12"
+              color="#fff"
+              margin="0 0 12px">
+                Ainda não tem acesso<br />
+                ao sistema? >
+                <Link href="#" 
+                  cursor="pointer"
+                  textDecoration="underline"
+                  color="#c5c4c4">
+                  Clique aqui.
+                </Link>
+            </Heading>
+        </Flex>
+        <Flex
           as="form"
-          width="100%"
-          maxWidth={360}
-          bg="gray.50"
-          padding="8"
-          borderRadius={8}
+          width="500px"
+          h="500px"
+          bg="#fff"
+          padding="20px"
+          justify="center"
+          borderRadius="0 10px 10px 0"
           flexDir='column'
           onSubmit={handleSubmit(handleSignIn)}>
+            <Heading as="h1"
+              color="#727376"
+              m="0 0 16px"
+              >
+              Login para Dashboard
+            </Heading>
             <Stack spacing="4">
-                <Input error={errors.email} name="email" type="email" label="E-mail" {...register('email')}/>
-                <Input error={errors.password} name="password" type="password" label="Senha" {...register('password')}/>
+                <Input error={errors.email}
+                  name="email" type="email"
+                  label="E-mail"
+                  {...register('email')}
+                  align="center"
+                  br="5px"
+                  placeholder="Digite um email"
+                  />
+                <Input error={errors.password}
+                  name="password" type="password"
+                  label="Senha"
+                  {...register('password')}
+                  align="center"
+                  br="5px"
+                  placeholder="Digite sua senha"
+                  />
             </Stack>
 
             <Button
