@@ -5,12 +5,12 @@ import { Table, Tbody, Th, Thead, Tr } from "@chakra-ui/table";
 import { useState, useEffect } from "react";
 import { Header } from "../../../components/Header";
 import { Sidebar } from "../../../components/Sidebar";
-import { useGestantes } from "../../../services/hooks/previne/useGestantes";
+import { useDiabeticos } from "../../../services/hooks/previne/useDiabeticos";
 
 
-export default function PreNatal() {
-    const [ gestantes, setGestantes ] = useState<any>()
-    const { data, isLoading, isFetching, error } = useGestantes()
+export default function Diabeticos() {
+    const [ diabeticos, setDiabeticos ] = useState<any>()
+    const { data, isLoading, isFetching, error } = useDiabeticos()
 
     return (
         <Box marginLeft={170}
@@ -27,7 +27,7 @@ export default function PreNatal() {
                         </Flex>
                     ) : error ? (
                         <Flex justify="center">
-                            <Text>Falha ao obter dados dos usuários</Text>
+                            <Text>Falha ao obter dados...</Text>
                         </Flex>
                     ) : (
                         <>
@@ -38,24 +38,18 @@ export default function PreNatal() {
                                         <Th>CNS</Th>
                                         <Th>CPF</Th>
                                         <Th>Nome</Th>
-                                        <Th>DUM</Th>
-                                        <Th>Consultas</Th>
-                                        <Th>Testes?</Th>
-                                        <Th>Odonto</Th>
+                                        <Th>OK?</Th>
                                     </Tr>
                                 </Thead>
                                 <Tbody>
-                                    {data.gestantes.map((ges, i) => {
+                                    {data.diabeticos.map((diabetico, i) => {
                                         return (
                                             <Tr key={i}>
-                                                <Th>{ges.ubs}</Th>
-                                                <Th>{ges.cns}</Th>
-                                                <Th>{ges.cpf}</Th>
-                                                <Th>{ges.nome}</Th>
-                                                <Th>{ges.dum}</Th>
-                                                <Th>{ges.consultas}</Th>
-                                                <Th><Checkbox isChecked={ges.testes}></Checkbox></Th>
-                                                <Th><Checkbox isChecked={ges.odonto}></Checkbox></Th>
+                                                <Th>{diabetico.ubs}</Th>
+                                                <Th>{diabetico.cns}</Th>
+                                                <Th>{diabetico.cpf}</Th>
+                                                <Th>{diabetico.nome}</Th>
+                                                <Th><Checkbox isChecked={diabetico.ok}></Checkbox></Th>
                                             </Tr>
                                         )
                                     })}

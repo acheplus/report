@@ -5,12 +5,12 @@ import { Table, Tbody, Th, Thead, Tr } from "@chakra-ui/table";
 import { useState, useEffect } from "react";
 import { Header } from "../../../components/Header";
 import { Sidebar } from "../../../components/Sidebar";
-import { useGestantes } from "../../../services/hooks/previne/useGestantes";
+import { useHipertensos } from "../../../services/hooks/previne/useHipertensos";
 
 
-export default function PreNatal() {
-    const [ gestantes, setGestantes ] = useState<any>()
-    const { data, isLoading, isFetching, error } = useGestantes()
+export default function Hipertensos() {
+    const [ hipertensos, setHipertensos ] = useState<any>()
+    const { data, isLoading, isFetching, error } = useHipertensos()
 
     return (
         <Box marginLeft={170}
@@ -27,7 +27,7 @@ export default function PreNatal() {
                         </Flex>
                     ) : error ? (
                         <Flex justify="center">
-                            <Text>Falha ao obter dados dos usuários</Text>
+                            <Text>Falha ao obter dados...</Text>
                         </Flex>
                     ) : (
                         <>
@@ -38,24 +38,18 @@ export default function PreNatal() {
                                         <Th>CNS</Th>
                                         <Th>CPF</Th>
                                         <Th>Nome</Th>
-                                        <Th>DUM</Th>
-                                        <Th>Consultas</Th>
-                                        <Th>Testes?</Th>
-                                        <Th>Odonto</Th>
+                                        <Th>OK?</Th>
                                     </Tr>
                                 </Thead>
                                 <Tbody>
-                                    {data.gestantes.map((ges, i) => {
+                                    {data.hipertensos.map((hipertenso, i) => {
                                         return (
                                             <Tr key={i}>
-                                                <Th>{ges.ubs}</Th>
-                                                <Th>{ges.cns}</Th>
-                                                <Th>{ges.cpf}</Th>
-                                                <Th>{ges.nome}</Th>
-                                                <Th>{ges.dum}</Th>
-                                                <Th>{ges.consultas}</Th>
-                                                <Th><Checkbox isChecked={ges.testes}></Checkbox></Th>
-                                                <Th><Checkbox isChecked={ges.odonto}></Checkbox></Th>
+                                                <Th>{hipertenso.ubs}</Th>
+                                                <Th>{hipertenso.cns}</Th>
+                                                <Th>{hipertenso.cpf}</Th>
+                                                <Th>{hipertenso.nome}</Th>
+                                                <Th><Checkbox isChecked={hipertenso.ok}></Checkbox></Th>
                                             </Tr>
                                         )
                                     })}
