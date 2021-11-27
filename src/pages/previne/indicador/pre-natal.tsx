@@ -74,9 +74,9 @@ export default function PreNatal() {
                                     </Tr>
                                 </Thead>
                                 <Tbody>
-                                    {data.gestantes.map(ges => {
+                                    {data.gestantes.map((ges, i) => {
                                         return (
-                                            <Tr>
+                                            <Tr key={i}>
                                                 <Th>{ges.ubs}</Th>
                                                 <Th>{ges.cns}</Th>
                                                 <Th>{ges.cpf}</Th>
