@@ -16,17 +16,17 @@ export function Sidebar() {
             <Stack spacing="6" align="flex-start" p="2">
                 <NavSection title="Dashboard">
                     <NavLink href="/dashboard" icon={RiDashboardLine}>Início</NavLink>
-                    <NavLink href="/users" icon={RiContactsLine}>Usuários</NavLink>
+                    {/* <NavLink href="/users" icon={RiContactsLine}>Usuários</NavLink> */}
                 </NavSection>
                 <NavSection title="Previne Brasil">
-                    <NavLink href="/dashboard" icon={RiInputMethodLine}>Pré-Natal</NavLink>
-                    <NavLink href="/dashboard" icon={RiGitMergeLine}>Saúde da Mulher</NavLink>
-                    <NavLink href="/dashboard" icon={RiGitMergeLine}>Saúde da Criança</NavLink>
-                    <NavLink href="/dashboard" icon={RiGitMergeLine}>Hipertensos</NavLink>
-                    <NavLink href="/dashboard" icon={RiGitMergeLine}>Diabéticos</NavLink>
+                    <NavLink href="/previne/indicador/pre-natal" icon={RiInputMethodLine}>Pré-Natal</NavLink>
+                    <NavLink href="/previne/indicador/citologias" icon={RiGitMergeLine}>Saúde da Mulher</NavLink>
+                    <NavLink href="/previne/indicador/vacinas" icon={RiGitMergeLine}>Saúde da Criança</NavLink>
+                    <NavLink href="/previne/indicador/hipertensos" icon={RiGitMergeLine}>Hipertensos</NavLink>
+                    <NavLink href="/previne/indicador/diabeticos" icon={RiGitMergeLine}>Diabéticos</NavLink>
                 </NavSection>
                 <NavSection title="Cidadãos">
-                    <NavLink href="/dashboard" icon={RiInputMethodLine}>Duplicados</NavLink>
+                    <NavLink href="/cidadaos" icon={RiInputMethodLine}>Duplicados</NavLink>
                 </NavSection>
             </Stack>
         </Box>

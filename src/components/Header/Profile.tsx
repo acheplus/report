@@ -1,4 +1,5 @@
 import { Box, Avatar, Flex, Icon, HStack, Button } from '@chakra-ui/react'
+import { FaUserCircle } from "react-icons/fa";
 import { RiNotificationLine, RiUserAddLine } from 'react-icons/ri'
 import { useContext } from 'react'
 import { AuthContext, signOut } from '../../contexts/AuthContext'
@@ -31,10 +32,10 @@ export function Profile() {
                 <span className="las la-envelope" />
             </div>
             </Flex>
-            <Avatar name="Bart Simpson" size="md" src="/assets/bart.jpg" />
+            <Avatar name="Bart Simpson" size="md" as={FaUserCircle} />
             <Flex direction="column">
                 <Box mr="4" align="center" padding="4">
-                    <h4>Bart Simpson</h4>
+                    <h4>{user?.username}</h4>
                     <small>{user?.email}</small>
                 </Box>
             </Flex>

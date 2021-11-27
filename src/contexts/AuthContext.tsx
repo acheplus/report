@@ -4,9 +4,11 @@ import { api } from '../services/apiClient'
 import Router from 'next/router'
 
 type User = {
+    username: string;
     email: string;
     permissions: string[];
     roles: string[];
+    prefeitura: string;
 }
 
 type SignInCredentials = {
@@ -66,9 +68,9 @@ export function AuthProvider({children}: AuthProviderProps) {
         if(token) {
             api.get('/me')
             .then( response => {
-                const { email, permissions, roles } = response.data
+                const { username, email, permissions, roles, prefeitura } = response.data
 
-                setUser({ email, permissions, roles })
+                setUser({ username, email, permissions, roles, prefeitura })
 
             })
             .catch(error => {
@@ -84,7 +86,7 @@ export function AuthProvider({children}: AuthProviderProps) {
                 password
             })
 
-            const { token, refreshToken, permissions, roles } = response.data
+            const { token, refreshToken, permissions, roles, username, prefeitura } = response.data
 
             setCookie(undefined, 'achereport.token', token, {
                 maxAge: 60 * 60 * 24 * 30, // 30 days
@@ -96,6 +98,8 @@ export function AuthProvider({children}: AuthProviderProps) {
             })
 
             setUser({
+                username,
+                prefeitura,
                 email,
                 permissions,
                 roles
