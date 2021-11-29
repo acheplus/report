@@ -65,6 +65,7 @@ export default function Home() {
           mb="50px"
           src="/assets/logo_acheb.png"
           alt='logo acheplus'
+
         />
         <Heading as="h5" fontSize="12" color="#fff" margin="0 0 12px">
           Ainda não tem acesso
