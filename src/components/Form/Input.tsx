@@ -34,7 +34,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
         br="5px"
         size="lg"
       >
-        <InputLeftElement pointerEvents="none">t
+        <InputLeftElement pointerEvents="none">
           <Icon as={iconBase} color="gray.300" />
         </InputLeftElement>
 
