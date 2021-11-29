@@ -7,6 +7,7 @@ import ExportCSV from "../../../components/ExportCsv";
 import { Header } from "../../../components/Header";
 import { Sidebar } from "../../../components/Sidebar";
 import { useGestantes } from "../../../services/hooks/previne/useGestantes";
+import { withSSRAuth } from "../../../utils/withSSRAuth";
 
 
 
@@ -72,3 +73,9 @@ export default function PreNatal() {
         </Box>
     )
 }
+
+export const getServerSideProps = withSSRAuth(async(ctx) => {
+    return {
+        props: {}
+    }
+})

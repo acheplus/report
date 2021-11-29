@@ -7,6 +7,7 @@ import ExportCSV from "../../../components/ExportCsv";
 import { Header } from "../../../components/Header";
 import { Sidebar } from "../../../components/Sidebar";
 import { useVacinas } from "../../../services/hooks/previne/useVacinas";
+import { withSSRAuth } from "../../../utils/withSSRAuth";
 
 
 export default function Vacinas() {
@@ -68,3 +69,9 @@ export default function Vacinas() {
         </Box>
     )
 }
+
+export const getServerSideProps = withSSRAuth(async(ctx) => {
+    return {
+        props: {}
+    }
+})

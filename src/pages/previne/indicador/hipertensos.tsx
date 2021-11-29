@@ -7,6 +7,7 @@ import ExportCSV from "../../../components/ExportCsv";
 import { Header } from "../../../components/Header";
 import { Sidebar } from "../../../components/Sidebar";
 import { useHipertensos } from "../../../services/hooks/previne/useHipertensos";
+import { withSSRAuth } from "../../../utils/withSSRAuth";
 
 
 export default function Hipertensos() {
@@ -64,3 +65,9 @@ export default function Hipertensos() {
         </Box>
     )
 }
+
+export const getServerSideProps = withSSRAuth(async(ctx) => {
+    return {
+        props: {}
+    }
+})

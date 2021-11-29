@@ -7,6 +7,7 @@ import ExportCSV from "../../../components/ExportCsv";
 import { Header } from "../../../components/Header";
 import { Sidebar } from "../../../components/Sidebar";
 import { useCitologias } from "../../../services/hooks/previne/useCitologias";
+import { withSSRAuth } from "../../../utils/withSSRAuth";
 
 
 export default function Citologias() {
@@ -64,3 +65,9 @@ export default function Citologias() {
         </Box>
     )
 }
+
+export const getServerSideProps = withSSRAuth(async(ctx) => {
+    return {
+        props: {}
+    }
+})

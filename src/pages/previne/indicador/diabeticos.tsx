@@ -7,6 +7,7 @@ import ExportCSV from "../../../components/ExportCsv";
 import { Header } from "../../../components/Header";
 import { Sidebar } from "../../../components/Sidebar";
 import { useDiabeticos } from "../../../services/hooks/previne/useDiabeticos";
+import { withSSRAuth } from "../../../utils/withSSRAuth";
 
 
 export default function Diabeticos() {
@@ -64,3 +65,9 @@ export default function Diabeticos() {
         </Box>
     )
 }
+
+export const getServerSideProps = withSSRAuth(async(ctx) => {
+    return {
+        props: {}
+    }
+})
