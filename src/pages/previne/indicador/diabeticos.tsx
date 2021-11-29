@@ -3,6 +3,7 @@ import { Box, Flex, Text } from "@chakra-ui/layout";
 import { Spinner } from "@chakra-ui/spinner";
 import { Table, Tbody, Th, Thead, Tr } from "@chakra-ui/table";
 import { useState, useEffect } from "react";
+import ExportCSV from "../../../components/ExportCsv";
 import { Header } from "../../../components/Header";
 import { Sidebar } from "../../../components/Sidebar";
 import { useDiabeticos } from "../../../services/hooks/previne/useDiabeticos";
@@ -31,6 +32,7 @@ export default function Diabeticos() {
                         </Flex>
                     ) : (
                         <>
+                            <ExportCSV csvData={data.diabeticos} header="UBS,CNS,CPF,NOME,OK?" />
                             <Table>
                                 <Thead>
                                     <Tr>

@@ -2,10 +2,13 @@ import { Checkbox } from "@chakra-ui/checkbox";
 import { Box, Flex, Text } from "@chakra-ui/layout";
 import { Spinner } from "@chakra-ui/spinner";
 import { Table, Tbody, Th, Thead, Tr } from "@chakra-ui/table";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import ExportCSV from "../../../components/ExportCsv";
 import { Header } from "../../../components/Header";
 import { Sidebar } from "../../../components/Sidebar";
 import { useGestantes } from "../../../services/hooks/previne/useGestantes";
+
+
 
 
 export default function PreNatal() {
@@ -31,6 +34,7 @@ export default function PreNatal() {
                         </Flex>
                     ) : (
                         <>
+                            <ExportCSV csvData={data.gestantes} header="UBS,CNS,CPF,NOME,DUM,CONSULTAS,TESTES,ODONTO" />
                             <Table>
                                 <Thead>
                                     <Tr>
