@@ -3,9 +3,11 @@ import { Box, Flex, Text } from "@chakra-ui/layout";
 import { Spinner } from "@chakra-ui/spinner";
 import { Table, Tbody, Th, Thead, Tr } from "@chakra-ui/table";
 import { useState, useEffect } from "react";
+import ExportCSV from "../../../components/ExportCsv";
 import { Header } from "../../../components/Header";
 import { Sidebar } from "../../../components/Sidebar";
 import { useVacinas } from "../../../services/hooks/previne/useVacinas";
+import { withSSRAuth } from "../../../utils/withSSRAuth";
 
 
 export default function Vacinas() {
@@ -31,6 +33,7 @@ export default function Vacinas() {
                         </Flex>
                     ) : (
                         <>
+                        <   ExportCSV csvData={data.criancas} header="UBS,CNS,CPF,NOME,IDADE,VIP?,PENTA?" />
                             <Table>
                                 <Thead>
                                     <Tr>
@@ -66,3 +69,9 @@ export default function Vacinas() {
         </Box>
     )
 }
+
+export const getServerSideProps = withSSRAuth(async(ctx) => {
+    return {
+        props: {}
+    }
+})
