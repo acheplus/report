@@ -6,6 +6,7 @@ import { Input } from '../components/Form/Input'
 import { AuthContext } from '../contexts/AuthContext'
 import { useContext } from 'react'
 import { withSSRGuest } from '../utils/withSSRGuest'
+import { MdSettings, MdUmbrella } from 'react-icons/md'
 
 type SignInFormData = {
   email: string;
@@ -89,13 +90,13 @@ export default function Home() {
               Login para Dashboard
             </Heading>
             <Stack spacing="4">
-                <Input error={errors.email}
+                <Input icon={MdSettings} error={errors.email}
                   name="email" type="email"
                   label="E-mail"
                   {...register('email')}
                   placeholder="Digite um email"
                   />
-                <Input error={errors.password}
+                <Input icon={MdUmbrella} error={errors.password}
                   name="password" type="password"
                   label="Senha"
                   {...register('password')}
