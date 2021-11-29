@@ -35,7 +35,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
         size="lg"
       >
         <InputLeftElement pointerEvents="none">
-          children={<Icon as={iconBase} color="gray.300" />}
+          <Icon as={iconBase} color="gray.300" />
         </InputLeftElement>
         <ChakraInput
           name={name}
