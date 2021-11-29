@@ -7,9 +7,6 @@ import {
   Link,
   Text,
   Checkbox,
-  InputGroup,
-  InputLeftElement,
-  Box
 } from '@chakra-ui/react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
