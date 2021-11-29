@@ -7,6 +7,8 @@ import {
   Link,
   Text,
   Checkbox,
+  InputGroup,
+  InputLeftElement,
   Box
 } from '@chakra-ui/react'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -95,50 +97,24 @@ export default function Home() {
           Login para Dashboard
         </Heading>
         <Stack spacing="4">
-          <Flex
-            padding="0px 5px 0 10px"
-            alignItems="center"
+          <Input
+            iconBase={FaEnvelope}
             width="100%"
-            focusBorderColor="teal.200"
-            borderRadius="10px 10px"
-            bgColor="gray.200"
-            variant="filled"
-            _hover={{
-              bgColor: 'gray.100'
-            }}
-          >
-            <FaEnvelope color="#797d9a" width="100%" />
-            <Input
-              width="100%"
-              alignSelf="flex-end"
-              error={errors.email}
-              name="email"
-              type="email"
-              {...register('email')}
-              placeholder="Digite um email"
-            />
-          </Flex>
-          <Flex
-            padding="0px 5px 0 10px"
-            alignItems="center"
-            width="100%"
-            focusBorderColor="teal.200"
-            borderRadius="10px 10px"
-            bgColor="gray.200"
-            variant="filled"
-            _hover={{
-              bgColor: 'gray.100'
-            }}
-          >
-            <FaLock color="#797d9a" width="100%" />
-            <Input
-              error={errors.password}
-              name="password"
-              type="password"
-              {...register('password')}
-              placeholder="Digite sua senha"
-            />
-          </Flex>
+            alignSelf="flex-end"
+            error={errors.email}
+            name="email"
+            type="email"
+            {...register('email')}
+            placeholder="Digite um email"
+          />
+          <Input
+            iconBase={FaLock}
+            error={errors.password}
+            name="password"
+            type="password"
+            {...register('password')}
+            placeholder="Digite sua senha"
+          />
         </Stack>
         <Flex width="100%" marginTop="2px">
           <Checkbox marginTop="4" label="Lembrar-me" width="100%">
