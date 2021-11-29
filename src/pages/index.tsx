@@ -2,14 +2,11 @@ import {
   Flex,
   Button,
   Stack,
+  Link,
   Heading,
   Image,
-  Link,
   Text,
   Checkbox,
-  InputGroup,
-  InputLeftElement,
-  Box
 } from '@chakra-ui/react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
@@ -67,6 +64,8 @@ export default function Home() {
           mt="40px"
           mb="50px"
           src="/assets/logo_acheb.png"
+          alt='logo acheplus'
+
         />
         <Heading as="h5" fontSize="12" color="#fff" margin="0 0 12px">
           Ainda não tem acesso
@@ -78,7 +77,7 @@ export default function Home() {
             textDecoration="underline"
             color="#c5c4c4"
           >
-            Clique aqui.
+            <a>Clique aqui.</a>
           </Link>
         </Heading>
       </Flex>

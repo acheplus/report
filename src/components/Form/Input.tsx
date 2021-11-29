@@ -11,7 +11,6 @@ import {
 import { forwardRef, ForwardRefRenderFunction } from 'react'
 import { FieldError } from 'react-hook-form'
 import { IconType } from 'react-icons'
-import { IconBase } from 'react-icons/lib'
 
 interface InputProps extends ChakraInputProps {
   name: string
@@ -35,10 +34,10 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
         br="5px"
         size="lg"
       >
-        <InputLeftElement
-          pointerEvents="none"
+        <InputLeftElement pointerEvents="none">
           children={<Icon as={iconBase} color="gray.300" />}
-        />
+        </InputLeftElement>
+
         <ChakraInput
           name={name}
           id={name}

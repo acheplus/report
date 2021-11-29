@@ -40,14 +40,14 @@ export default function UserList() {
                         
                         <Link href="/users/create" passHref>
                             <Button
-                            as="a"
-                            size="sm"
-                            colorScheme="green"
-                            fontSize="20"
-                            leftIcon={<Icon
-                            as={RiAddLine}></Icon>}>
-                            Criar
-                            Novo
+                                as="a"
+                                size="sm"
+                                colorScheme="green"
+                                fontSize="20"
+                                leftIcon={<Icon
+                                as={RiAddLine}></Icon>}>
+                                Criar
+                                Novo
                             </Button>
                         </Link>
                     </Flex>
@@ -90,7 +90,7 @@ export default function UserList() {
                                                 </Td>
                                                 <Td>{user.created_at}</Td>
                                                 <Td>
-                                                    <Link href="/users/create">
+                                                    <Link href="/users/create" passHref>
                                                         <Button
                                                             as="a"
                                                             size="sm"

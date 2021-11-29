@@ -11,6 +11,7 @@ import { Sidebar } from '../../components/Sidebar'
 import { api } from '../../services/apiClient'
 import { queryClient } from '../../services/mirage/queryClient'
 import { useRouter } from 'next/router'
+import { FaEnvelope } from 'react-icons/fa'
 
 type CreateUserFormData = {
     name: string;
@@ -69,13 +70,13 @@ export default function CreateUser() {
 
                     <VStack spacing="8">
                         <SimpleGrid minChildWidth="248px" spacing="8" w="100%">
-                            <Input error={formState.errors.name} {...register('name')} name="name" type="text" label="Nome completo" />
-                            <Input error={formState.errors.email} {...register('email')} name="email" type="email" label="E-mail" />
+                            <Input iconBase={FaEnvelope} error={formState.errors.name} {...register('name')} name="name" type="text" label="Nome completo" />
+                            <Input iconBase={FaEnvelope} error={formState.errors.email} {...register('email')} name="email" type="email" label="E-mail" />
                         </SimpleGrid>
 
                         <SimpleGrid minChildWidth="248px" spacing="8" w="100%">
-                            <Input error={formState.errors.password} {...register('password')} name="password" type="password" label="Senha" />
-                            <Input error={formState.errors.password_confirmation} {...register('password_confirmation')} name="password_confirmation" type="password" label="Confirmação da senha" />
+                            <Input iconBase={FaEnvelope} error={formState.errors.password} {...register('password')} name="password" type="password" label="Senha" />
+                            <Input iconBase={FaEnvelope} error={formState.errors.password_confirmation} {...register('password_confirmation')} name="password_confirmation" type="password" label="Confirmação da senha" />
                         </SimpleGrid>
                     </VStack>
 
