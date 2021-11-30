@@ -33,11 +33,12 @@ export default function Diabeticos() {
                         </Flex>
                     ) : (
                         <>
-                            <ExportCSV csvData={data.diabeticos} header="UBS,CNS,CPF,NOME,OK?" />
+                            <ExportCSV csvData={data.diabeticos} header="UBS,INE,CNS,CPF,NOME,OK?" />
                             <Table>
                                 <Thead>
                                     <Tr>
                                         <Th>UBS</Th>
+                                        <Th>INE</Th>
                                         <Th>CNS</Th>
                                         <Th>CPF</Th>
                                         <Th>Nome</Th>
@@ -49,6 +50,7 @@ export default function Diabeticos() {
                                         return (
                                             <Tr key={i}>
                                                 <Th>{diabetico.ubs}</Th>
+                                                <Th>{diabetico.ine}</Th>
                                                 <Th>{diabetico.cns}</Th>
                                                 <Th>{diabetico.cpf}</Th>
                                                 <Th>{diabetico.nome}</Th>

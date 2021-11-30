@@ -4,8 +4,10 @@ import { api } from '../../../services/apiClient'
 type Mulher = {
     ubs: string;
     cns: string;
+    ine: number;
     cpf: string;
     nome: string;
+    idade: number;
     ok: boolean;
 }
 
@@ -22,9 +24,11 @@ export async function getMulheres(): Promise<any> {
         return {
             // id: mulher.id,
             ubs: mulher.no_unidade_saude,
+            ine: Number(mulher.nu_ine),
             cns: mulher.nu_cns,
             cpf: mulher.nu_cpf_cidadao,
             nome: mulher.no_cidadao,
+            idade: Number(mulher.idade),
             ok: mulher.tem,
         }
     })

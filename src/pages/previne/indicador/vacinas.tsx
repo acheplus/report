@@ -33,11 +33,12 @@ export default function Vacinas() {
                         </Flex>
                     ) : (
                         <>
-                        <   ExportCSV csvData={data.criancas} header="UBS,CNS,CPF,NOME,IDADE,VIP?,PENTA?" />
+                        <ExportCSV csvData={data.criancas} header="UBS,INE,CNS,CPF,NOME,IDADE,VIP?,PENTA?" />
                             <Table>
                                 <Thead>
                                     <Tr>
                                         <Th>UBS</Th>
+                                        <Th>INE</Th>
                                         <Th>CNS</Th>
                                         <Th>CPF</Th>
                                         <Th>Nome</Th>
@@ -51,6 +52,7 @@ export default function Vacinas() {
                                         return (
                                             <Tr key={i}>
                                                 <Th>{crianca.ubs}</Th>
+                                                <Th>{crianca.ine}</Th>
                                                 <Th>{crianca.cns}</Th>
                                                 <Th>{crianca.cpf}</Th>
                                                 <Th>{crianca.nome}</Th>

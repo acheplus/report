@@ -3,6 +3,7 @@ import { api } from '../../../services/apiClient'
 
 type Diabetico = {
     ubs: string;
+    ine: number;
     cns: string;
     cpf: string;
     nome: string;
@@ -22,6 +23,7 @@ export async function getDiabeticos(): Promise<any> {
         return {
             // id: diabetico.id,
             ubs: diabetico.no_unidade_saude,
+            ine: Number(diabetico.nu_ine),
             cns: diabetico.nu_cns,
             cpf: diabetico.nu_cpf_cidadao,
             nome: diabetico.no_cidadao,

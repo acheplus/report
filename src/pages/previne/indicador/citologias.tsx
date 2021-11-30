@@ -33,14 +33,16 @@ export default function Citologias() {
                         </Flex>
                     ) : (
                         <>
-                            <ExportCSV csvData={data.mulheres} header="UBS,CNS,CPF,NOME,OK?" />
+                            <ExportCSV csvData={data.mulheres} header="UBS,INE,CNS,CPF,NOME,IDADE,OK?" />
                             <Table>
                                 <Thead>
                                     <Tr>
                                         <Th>UBS</Th>
+                                        <Th>INE</Th>
                                         <Th>CNS</Th>
                                         <Th>CPF</Th>
                                         <Th>Nome</Th>
+                                        <Th>Idade</Th>
                                         <Th>OK?</Th>
                                     </Tr>
                                 </Thead>
@@ -49,9 +51,11 @@ export default function Citologias() {
                                         return (
                                             <Tr key={i}>
                                                 <Th>{mulher.ubs}</Th>
+                                                <Th>{mulher.ine}</Th>
                                                 <Th>{mulher.cns}</Th>
                                                 <Th>{mulher.cpf}</Th>
                                                 <Th>{mulher.nome}</Th>
+                                                <Th>{mulher.idade}</Th>
                                                 <Th><Checkbox isChecked={mulher.ok}></Checkbox></Th>
                                             </Tr>
                                         )

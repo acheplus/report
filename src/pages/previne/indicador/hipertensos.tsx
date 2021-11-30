@@ -33,11 +33,12 @@ export default function Hipertensos() {
                         </Flex>
                     ) : (
                         <>
-                            <ExportCSV csvData={data.hipertensos} header="UBS,CNS,CPF,NOME,OK?" />
+                            <ExportCSV csvData={data.hipertensos} header="UBS,INE,CNS,CPF,NOME,OK?" />
                             <Table>
                                 <Thead>
                                     <Tr>
                                         <Th>UBS</Th>
+                                        <Th>INE</Th>
                                         <Th>CNS</Th>
                                         <Th>CPF</Th>
                                         <Th>Nome</Th>
@@ -49,6 +50,7 @@ export default function Hipertensos() {
                                         return (
                                             <Tr key={i}>
                                                 <Th>{hipertenso.ubs}</Th>
+                                                <Th>{hipertenso.ine}</Th>
                                                 <Th>{hipertenso.cns}</Th>
                                                 <Th>{hipertenso.cpf}</Th>
                                                 <Th>{hipertenso.nome}</Th>
