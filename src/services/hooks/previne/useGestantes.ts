@@ -4,6 +4,7 @@ import { api } from '../../../services/apiClient'
 type Gestante = {
     id?: string;
     ubs: string;
+    ine: number;
     cns: string;
     cpf: string;
     nome: string;
@@ -32,12 +33,11 @@ export async function getGestantes(): Promise<any> {
             // id: gestante.id,
             ubs: gestante.no_unidade_saude,
             cns: gestante.nu_cns,
+            ine: Number(gestante.nu_ine),
             cpf: gestante.nu_cpf_cidadao,
             nome: gestante.no_cidadao,
-            dum: new Date(gestante.dt_inicio_gestacao).toLocaleDateString('pt-BR', {
-                day: '2-digit',
-                month: 'long',
-                year: 'numeric'
+            dum: new Date(gestante.dum).toLocaleDateString('pt-BR', {
+                timeZone: 'UTC'
             }),
             consultas: gestante.consultas,
             testes: gestante.citopatologico,

@@ -3,6 +3,7 @@ import { api } from '../../../services/apiClient'
 
 type Hipertenso = {
     ubs: string;
+    ine: number;
     cns: string;
     cpf: string;
     nome: string;
@@ -22,6 +23,7 @@ export async function getHipertensos(): Promise<any> {
         return {
             // id: hipertenso.id,
             ubs: hipertenso.no_unidade_saude,
+            ine: Number(hipertenso.nu_ine),
             cns: hipertenso.nu_cns,
             cpf: hipertenso.nu_cpf_cidadao,
             nome: hipertenso.no_cidadao,

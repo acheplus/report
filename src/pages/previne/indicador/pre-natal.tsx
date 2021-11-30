@@ -35,11 +35,12 @@ export default function PreNatal() {
                         </Flex>
                     ) : (
                         <>
-                            <ExportCSV csvData={data.gestantes} header="UBS,CNS,CPF,NOME,DUM,CONSULTAS,TESTES,ODONTO" />
+                            <ExportCSV csvData={data.gestantes} header="UBS,INE,CNS,CPF,NOME,DUM,CONSULTAS,TESTES,ODONTO" />
                             <Table>
                                 <Thead>
                                     <Tr>
                                         <Th>UBS</Th>
+                                        <Th>INE</Th>
                                         <Th>CNS</Th>
                                         <Th>CPF</Th>
                                         <Th>Nome</Th>
@@ -54,6 +55,7 @@ export default function PreNatal() {
                                         return (
                                             <Tr key={i}>
                                                 <Th>{ges.ubs}</Th>
+                                                <Th>{ges.ine}</Th>
                                                 <Th>{ges.cns}</Th>
                                                 <Th>{ges.cpf}</Th>
                                                 <Th>{ges.nome}</Th>

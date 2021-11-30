@@ -3,6 +3,7 @@ import { api } from '../../../services/apiClient'
 
 type Crianca = {
     ubs: string;
+    ine: number,
     cns: string;
     cpf: string;
     nome: string;
@@ -24,6 +25,7 @@ export async function getCriancas(): Promise<any> {
         return {
             // id: crianca.id,
             ubs: crianca.no_unidade_saude,
+            ine: Number(crianca.nu_ine),
             cns: crianca.nu_cns,
             cpf: crianca.nu_cpf_cidadao,
             nome: crianca.no_cidadao,
