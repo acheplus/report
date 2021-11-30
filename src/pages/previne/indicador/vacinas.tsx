@@ -33,7 +33,7 @@ export default function Vacinas() {
                         </Flex>
                     ) : (
                         <>
-                        <   ExportCSV csvData={data.criancas} header="UBS,INE,CNS,CPF,NOME,IDADE,VIP?,PENTA?" />
+                        <ExportCSV csvData={data.criancas} header="UBS,INE,CNS,CPF,NOME,IDADE,VIP?,PENTA?" />
                             <Table>
                                 <Thead>
                                     <Tr>
