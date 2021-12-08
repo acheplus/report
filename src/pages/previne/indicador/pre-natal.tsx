@@ -3,6 +3,7 @@ import { Box, Flex, Text } from "@chakra-ui/layout";
 import { Spinner } from "@chakra-ui/spinner";
 import { useEffect, useState } from "react";
 import ExportCSV from "../../../components/ExportCsv";
+import SelectColumnFilter from "../../../components/Filter/SelectColumFilter";
 import { Header } from "../../../components/Header";
 import { Sidebar } from "../../../components/Sidebar";
 import TableInstance from "../../../components/Table";
@@ -41,12 +42,14 @@ export default function PreNatal() {
                             <TableInstance tableData={gestantes} columnsData={[
                                 {
                                     Header: 'UBS',
-                                    accessor: 'ubs'
+                                    accessor: 'ubs',
+                                    Filter: SelectColumnFilter,
                                 },
                                 {
                                     Header: 'INE',
                                     accessor: 'ine',
-                                    isNumeric: true
+                                    isNumeric: true,
+                                    Filter: SelectColumnFilter,
                                 },
                                 {
                                     Header: 'CNS',
@@ -72,12 +75,14 @@ export default function PreNatal() {
                                 {
                                     Header: 'Testes',
                                     accessor: 'testes',
-                                    Cell: ({value}) => <Checkbox isChecked={value}></Checkbox>
+                                    Cell: ({value}) => <Checkbox isChecked={value}></Checkbox>,
+                                    Filter: SelectColumnFilter,
                                 },
                                 {
                                     Header: 'Odonto?',
                                     accessor: 'odonto',
-                                    Cell: ({value}) => <Checkbox isChecked={value}></Checkbox>
+                                    Cell: ({value}) => <Checkbox isChecked={value}></Checkbox>,
+                                    Filter: SelectColumnFilter,
                                 },
                             ]} />
                         </>

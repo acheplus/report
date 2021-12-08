@@ -4,6 +4,7 @@ import { Spinner } from "@chakra-ui/spinner";
 import { Table, Tbody, Th, Thead, Tr } from "@chakra-ui/table";
 import { useState, useEffect } from "react";
 import ExportCSV from "../../../components/ExportCsv";
+import SelectColumnFilter from "../../../components/Filter/SelectColumFilter";
 import { Header } from "../../../components/Header";
 import { Sidebar } from "../../../components/Sidebar";
 import TableInstance from "../../../components/Table";
@@ -42,12 +43,14 @@ export default function Citologias() {
                             <TableInstance tableData={mulheres} columnsData={[
                                 {
                                     Header: 'UBS',
-                                    accessor: 'ubs'
+                                    accessor: 'ubs',
+                                    Filter: SelectColumnFilter,
                                 },
                                 {
                                     Header: 'INE',
                                     accessor: 'ine',
-                                    isNumeric: true
+                                    isNumeric: true,
+                                    Filter: SelectColumnFilter,
                                 },
                                 {
                                     Header: 'CNS',
@@ -69,7 +72,8 @@ export default function Citologias() {
                                 {
                                     Header: 'OK?',
                                     accessor: 'ok',
-                                    Cell: ({value}) => <Checkbox isChecked={value}></Checkbox>
+                                    Cell: ({value}) => <Checkbox isChecked={value}></Checkbox>,
+                                    Filter: SelectColumnFilter,
                                 },
                             ]} />
                         </>
