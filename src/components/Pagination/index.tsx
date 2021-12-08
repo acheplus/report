@@ -24,7 +24,7 @@ export function Pagination({
     currentPage = 1,
     onPageChange
 }: PaginationProps) {
-    const lastPage = Math.floor(totalCountOfRegisters / registersPerPage);
+    const lastPage = Math.ceil(totalCountOfRegisters / registersPerPage);
 
     const previousPage = currentPage > 1
         ? generatePagesArray(currentPage - 1 - sibilingsCount, currentPage - 1)
@@ -41,7 +41,7 @@ export function Pagination({
             justify="space-between"
             align="center">
             <Box>
-                <strong>0</strong> - <strong>10</strong> de <strong>100</strong>
+                <strong>{currentPage*10-9}</strong> - <strong>{currentPage*10}</strong> de <strong>{totalCountOfRegisters}</strong>
             </Box>
             <Stack direction="row"
                 spacing="2"
@@ -67,10 +67,10 @@ export function Pagination({
 
                 { (currentPage + sibilingsCount) < lastPage && (
                     <>
-                        <PaginationItem onPageChange={onPageChange} number={lastPage} isCurrent={false} />
                         {(currentPage + 1 + sibilingsCount) < lastPage && (
                             <Text color="gray.300" w="8" textAlign="center">...</Text>
                         )}
+                        <PaginationItem onPageChange={onPageChange} number={lastPage} isCurrent={false} />
                     </>
                 )}
 

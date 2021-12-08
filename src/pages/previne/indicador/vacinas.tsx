@@ -6,13 +6,18 @@ import { useState, useEffect } from "react";
 import ExportCSV from "../../../components/ExportCsv";
 import { Header } from "../../../components/Header";
 import { Sidebar } from "../../../components/Sidebar";
+import TableInstance from "../../../components/Table";
 import { useVacinas } from "../../../services/hooks/previne/useVacinas";
 import { withSSRAuth } from "../../../utils/withSSRAuth";
 
 
 export default function Vacinas() {
     const [ criancas, setCriancas ] = useState<any>()
-    const { data, isLoading, isFetching, error } = useVacinas()
+    const { data: apiResponse, isLoading, isFetching, error } = useVacinas()
+
+    useEffect(() => {
+        setCriancas(apiResponse?.criancas)
+    }, [apiResponse])
 
     return (
         <Box marginLeft={170}
@@ -23,7 +28,7 @@ export default function Vacinas() {
 
                 <Sidebar />
 
-                { isLoading ? (
+                { isLoading || !criancas ? (
                         <Flex justify="center">
                             <Spinner />
                         </Flex>
@@ -33,37 +38,45 @@ export default function Vacinas() {
                         </Flex>
                     ) : (
                         <>
-                        <ExportCSV csvData={data.criancas} header="UBS,INE,CNS,CPF,NOME,IDADE,VIP?,PENTA?" />
-                            <Table>
-                                <Thead>
-                                    <Tr>
-                                        <Th>UBS</Th>
-                                        <Th>INE</Th>
-                                        <Th>CNS</Th>
-                                        <Th>CPF</Th>
-                                        <Th>Nome</Th>
-                                        <Th>Idade</Th>
-                                        <Th>VIP?</Th>
-                                        <Th>Penta</Th>
-                                    </Tr>
-                                </Thead>
-                                <Tbody>
-                                    {data.criancas.map((crianca, i) => {
-                                        return (
-                                            <Tr key={i}>
-                                                <Th>{crianca.ubs}</Th>
-                                                <Th>{crianca.ine}</Th>
-                                                <Th>{crianca.cns}</Th>
-                                                <Th>{crianca.cpf}</Th>
-                                                <Th>{crianca.nome}</Th>
-                                                <Th>{crianca.idade}</Th>
-                                                <Th><Checkbox isChecked={crianca.vip}></Checkbox></Th>
-                                                <Th><Checkbox isChecked={crianca.penta}></Checkbox></Th>
-                                            </Tr>
-                                        )
-                                    })}
-                                </Tbody>
-                            </Table>
+                        <ExportCSV csvData={criancas} header="UBS,INE,CNS,CPF,NOME,IDADE,VIP?,PENTA?" />
+                            <TableInstance tableData={criancas} columnsData={[
+                                {
+                                    Header: 'UBS',
+                                    accessor: 'ubs'
+                                },
+                                {
+                                    Header: 'INE',
+                                    accessor: 'ine',
+                                    isNumeric: true
+                                },
+                                {
+                                    Header: 'CNS',
+                                    accessor: 'cns'
+                                },
+                                {
+                                    Header: 'CPF',
+                                    accessor: 'cpf'
+                                },
+                                {
+                                    Header: 'Nome',
+                                    accessor: 'nome'
+                                },
+                                {
+                                    Header: 'Idade(Meses)?',
+                                    accessor: 'idade',
+                                    isNumeric: true,
+                                },
+                                {
+                                    Header: 'VIP?',
+                                    accessor: 'vip',
+                                    Cell: ({value}) => <Checkbox isChecked={value}></Checkbox>
+                                },
+                                {
+                                    Header: 'PENTA?',
+                                    accessor: 'penta',
+                                    Cell: ({value}) => <Checkbox isChecked={value}></Checkbox>
+                                },
+                            ]} />
                         </>
                     )
                 }

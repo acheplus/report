@@ -1,5 +1,8 @@
 import { Table, Tbody, Th, Thead, Tr, Td, chakra } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/layout";
 import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons'
+import { Pagination } from "../Pagination";
+import { useState } from "react";
 
 const TableLayout = ({
     getTableProps,
@@ -8,13 +11,14 @@ const TableLayout = ({
     rows,
     prepareRow,
   }) => {
+      const [page, setPage] = useState(1)
 
     // We don't want to render all of the rows for this example, so cap
     // it for this use case
-    const firstPageRows = rows.slice(0, 10)
+    const firstPageRows = rows.slice((10*page-10), 10*page)
 
     return (
-        <>
+        <Flex display='inline'>
             <Table {...getTableProps()}>
                 <Thead>
                 {headerGroups.map(headerGroup => (
@@ -53,9 +57,11 @@ const TableLayout = ({
                 })}
                 </Tbody>
             </Table>
-            <br />
-            <div>Mostrando os primeiros 10 resultados de {rows.length} registros</div>
-        </>
+            <Pagination
+                totalCountOfRegisters={rows.length}
+                currentPage={page}
+                onPageChange={setPage} />
+        </Flex>
     );
   }
 

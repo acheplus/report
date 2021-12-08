@@ -1,20 +1,22 @@
 import { Checkbox } from "@chakra-ui/checkbox";
 import { Box, Flex, Text } from "@chakra-ui/layout";
 import { Spinner } from "@chakra-ui/spinner";
-import { Table, Tbody, Th, Thead, Tr } from "@chakra-ui/table";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ExportCSV from "../../../components/ExportCsv";
 import { Header } from "../../../components/Header";
 import { Sidebar } from "../../../components/Sidebar";
+import TableInstance from "../../../components/Table";
 import { useGestantes } from "../../../services/hooks/previne/useGestantes";
 import { withSSRAuth } from "../../../utils/withSSRAuth";
 
 
-
-
 export default function PreNatal() {
     const [ gestantes, setGestantes ] = useState<any>()
-    const { data, isLoading, isFetching, error } = useGestantes()
+    const { data: apiResponse, isLoading, isFetching, error } = useGestantes()
+
+    useEffect(() => {
+        setGestantes(apiResponse?.gestantes)
+    }, [apiResponse])
 
     return (
         <Box marginLeft={170}
@@ -25,7 +27,7 @@ export default function PreNatal() {
 
                 <Sidebar />
 
-                { isLoading ? (
+                { isLoading || !gestantes ? (
                         <Flex justify="center">
                             <Spinner />
                         </Flex>
@@ -35,39 +37,49 @@ export default function PreNatal() {
                         </Flex>
                     ) : (
                         <>
-                            <ExportCSV csvData={data.gestantes} header="UBS,INE,CNS,CPF,NOME,DUM,CONSULTAS,TESTES,ODONTO" />
-                            <Table>
-                                <Thead>
-                                    <Tr>
-                                        <Th>UBS</Th>
-                                        <Th>INE</Th>
-                                        <Th>CNS</Th>
-                                        <Th>CPF</Th>
-                                        <Th>Nome</Th>
-                                        <Th>DUM</Th>
-                                        <Th>Consultas</Th>
-                                        <Th>Testes?</Th>
-                                        <Th>Odonto</Th>
-                                    </Tr>
-                                </Thead>
-                                <Tbody>
-                                    {data.gestantes.map((ges, i) => {
-                                        return (
-                                            <Tr key={i}>
-                                                <Th>{ges.ubs}</Th>
-                                                <Th>{ges.ine}</Th>
-                                                <Th>{ges.cns}</Th>
-                                                <Th>{ges.cpf}</Th>
-                                                <Th>{ges.nome}</Th>
-                                                <Th>{ges.dum}</Th>
-                                                <Th>{ges.consultas}</Th>
-                                                <Th><Checkbox isChecked={ges.testes}></Checkbox></Th>
-                                                <Th><Checkbox isChecked={ges.odonto}></Checkbox></Th>
-                                            </Tr>
-                                        )
-                                    })}
-                                </Tbody>
-                            </Table>
+                            <ExportCSV csvData={gestantes} header="UBS,INE,CNS,CPF,NOME,DUM,CONSULTAS,TESTES,ODONTO" />
+                            <TableInstance tableData={gestantes} columnsData={[
+                                {
+                                    Header: 'UBS',
+                                    accessor: 'ubs'
+                                },
+                                {
+                                    Header: 'INE',
+                                    accessor: 'ine',
+                                    isNumeric: true
+                                },
+                                {
+                                    Header: 'CNS',
+                                    accessor: 'cns'
+                                },
+                                {
+                                    Header: 'CPF',
+                                    accessor: 'cpf'
+                                },
+                                {
+                                    Header: 'Nome',
+                                    accessor: 'nome'
+                                },
+                                {
+                                    Header: 'DUM',
+                                    accessor: 'dum',
+                                },
+                                {
+                                    Header: 'Consultas',
+                                    accessor: 'consultas',
+                                    isNumeric: true,
+                                },
+                                {
+                                    Header: 'Testes',
+                                    accessor: 'testes',
+                                    Cell: ({value}) => <Checkbox isChecked={value}></Checkbox>
+                                },
+                                {
+                                    Header: 'Odonto?',
+                                    accessor: 'odonto',
+                                    Cell: ({value}) => <Checkbox isChecked={value}></Checkbox>
+                                },
+                            ]} />
                         </>
                     )
                 }
