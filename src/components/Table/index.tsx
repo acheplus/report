@@ -1,4 +1,3 @@
-import { Checkbox } from "@chakra-ui/checkbox";
 import { useMemo } from "react";
 import {useTable, useSortBy, useFilters} from 'react-table';
 import { matchSorter } from 'match-sorter'
@@ -29,7 +28,7 @@ const TableInstance = ({ tableData, columnsData }) => {
         )
     }
 
-    function fuzzyTextFilterFn(rows, id, filterValue) {
+    function fuzzyTextFilterFn(rows: any[], id, filterValue) {
         return matchSorter(rows, filterValue, { keys: [row => row.values[id]] })
     }
 
@@ -40,7 +39,7 @@ const TableInstance = ({ tableData, columnsData }) => {
         // Or, override the default text filter to use
         // "startWith"
         text: (rows, id, filterValue) => {
-            return rows.filter(row => {
+            return rows.filter((row: any[]) => {
             const rowValue = row.values[id]
             return rowValue !== undefined
                 ? String(rowValue)

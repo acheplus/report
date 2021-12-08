@@ -21,10 +21,10 @@ const TableLayout = ({
         <Flex display='inline'>
             <Table {...getTableProps()}>
                 <Thead>
-                {headerGroups.map(headerGroup => (
-                    <Tr {...headerGroup.getHeaderGroupProps()}>
-                    {headerGroup.headers.map(column => (
-                        <Th {...column.getHeaderProps(column.getSortByToggleProps())}
+                {headerGroups.map((headerGroup, index) => (
+                    <Tr key={index} {...headerGroup.getHeaderGroupProps()}>
+                    {headerGroup.headers.map((column, i) => (
+                        <Th key={i} {...column.getHeaderProps(column.getSortByToggleProps())}
                             isNumeric={column.isNumeric}>
                             {column.render('Header')}
                             <chakra.span pl='4'>
@@ -46,9 +46,9 @@ const TableLayout = ({
                 {firstPageRows.map((row, i) => {
                     prepareRow(row)
                     return (
-                    <Tr {...row.getRowProps()}>
-                        {row.cells.map(cell => (
-                        <Td {...cell.getCellProps()} isNumeric={cell.column.isNumeric}>
+                    <Tr key={i} {...row.getRowProps()}>
+                        {row.cells.map((cell, index) => (
+                        <Td key={index} {...cell.getCellProps()} isNumeric={cell.column.isNumeric}>
                             {cell.render('Cell')}
                             </Td>
                         ))}
