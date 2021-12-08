@@ -6,13 +6,18 @@ import { useState, useEffect } from "react";
 import ExportCSV from "../../../components/ExportCsv";
 import { Header } from "../../../components/Header";
 import { Sidebar } from "../../../components/Sidebar";
+import TableInstance from "../../../components/Table";
 import { useCitologias } from "../../../services/hooks/previne/useCitologias";
 import { withSSRAuth } from "../../../utils/withSSRAuth";
 
 
 export default function Citologias() {
     const [ mulheres, setMulheres ] = useState<any>()
-    const { data, isLoading, isFetching, error } = useCitologias()
+    const { data: apiResponse, isLoading, isFetching, error } = useCitologias()
+
+    useEffect(() => {
+        setMulheres(apiResponse?.mulheres)
+    }, [apiResponse])
 
     return (
         <Box marginLeft={170}
@@ -23,7 +28,7 @@ export default function Citologias() {
 
                 <Sidebar />
 
-                { isLoading ? (
+                { isLoading || !mulheres ? (
                         <Flex justify="center">
                             <Spinner />
                         </Flex>
@@ -33,35 +38,40 @@ export default function Citologias() {
                         </Flex>
                     ) : (
                         <>
-                            <ExportCSV csvData={data.mulheres} header="UBS,INE,CNS,CPF,NOME,IDADE,OK?" />
-                            <Table>
-                                <Thead>
-                                    <Tr>
-                                        <Th>UBS</Th>
-                                        <Th>INE</Th>
-                                        <Th>CNS</Th>
-                                        <Th>CPF</Th>
-                                        <Th>Nome</Th>
-                                        <Th>Idade</Th>
-                                        <Th>OK?</Th>
-                                    </Tr>
-                                </Thead>
-                                <Tbody>
-                                    {data.mulheres.map((mulher, i) => {
-                                        return (
-                                            <Tr key={i}>
-                                                <Th>{mulher.ubs}</Th>
-                                                <Th>{mulher.ine}</Th>
-                                                <Th>{mulher.cns}</Th>
-                                                <Th>{mulher.cpf}</Th>
-                                                <Th>{mulher.nome}</Th>
-                                                <Th>{mulher.idade}</Th>
-                                                <Th><Checkbox isChecked={mulher.ok}></Checkbox></Th>
-                                            </Tr>
-                                        )
-                                    })}
-                                </Tbody>
-                            </Table>
+                            <ExportCSV csvData={mulheres} header="UBS,INE,CNS,CPF,NOME,IDADE,OK?" />
+                            <TableInstance tableData={mulheres} columnsData={[
+                                {
+                                    Header: 'UBS',
+                                    accessor: 'ubs'
+                                },
+                                {
+                                    Header: 'INE',
+                                    accessor: 'ine',
+                                    isNumeric: true
+                                },
+                                {
+                                    Header: 'CNS',
+                                    accessor: 'cns'
+                                },
+                                {
+                                    Header: 'CPF',
+                                    accessor: 'cpf'
+                                },
+                                {
+                                    Header: 'Nome',
+                                    accessor: 'nome'
+                                },
+                                {
+                                    Header: 'Idade?',
+                                    accessor: 'idade',
+                                    isNumeric: true,
+                                },
+                                {
+                                    Header: 'OK?',
+                                    accessor: 'ok',
+                                    Cell: ({value}) => <Checkbox isChecked={value}></Checkbox>
+                                },
+                            ]} />
                         </>
                     )
                 }
