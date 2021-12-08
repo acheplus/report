@@ -4,6 +4,7 @@ import { Spinner } from "@chakra-ui/spinner";
 import { Table, Tbody, Th, Thead, Tr } from "@chakra-ui/table";
 import { useState, useEffect } from "react";
 import ExportCSV from "../../../components/ExportCsv";
+import SelectColumnFilter from "../../../components/Filter/SelectColumFilter";
 import { Header } from "../../../components/Header";
 import { Sidebar } from "../../../components/Sidebar";
 import TableInstance from "../../../components/Table";
@@ -42,12 +43,14 @@ export default function Vacinas() {
                             <TableInstance tableData={criancas} columnsData={[
                                 {
                                     Header: 'UBS',
-                                    accessor: 'ubs'
+                                    accessor: 'ubs',
+                                    Filter: SelectColumnFilter,
                                 },
                                 {
                                     Header: 'INE',
                                     accessor: 'ine',
-                                    isNumeric: true
+                                    isNumeric: true,
+                                    Filter: SelectColumnFilter,
                                 },
                                 {
                                     Header: 'CNS',
@@ -69,12 +72,14 @@ export default function Vacinas() {
                                 {
                                     Header: 'VIP?',
                                     accessor: 'vip',
-                                    Cell: ({value}) => <Checkbox isChecked={value}></Checkbox>
+                                    Cell: ({value}) => <Checkbox isChecked={value}></Checkbox>,
+                                    Filter: SelectColumnFilter,
                                 },
                                 {
                                     Header: 'PENTA?',
                                     accessor: 'penta',
-                                    Cell: ({value}) => <Checkbox isChecked={value}></Checkbox>
+                                    Cell: ({value}) => <Checkbox isChecked={value}></Checkbox>,
+                                    Filter: SelectColumnFilter,
                                 },
                             ]} />
                         </>

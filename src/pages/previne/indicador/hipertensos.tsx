@@ -3,6 +3,7 @@ import { Box, Flex, Text } from "@chakra-ui/layout";
 import { Spinner } from "@chakra-ui/spinner";
 import { useState, useEffect } from "react";
 import ExportCSV from "../../../components/ExportCsv";
+import SelectColumnFilter from "../../../components/Filter/SelectColumFilter";
 import { Header } from "../../../components/Header";
 import { Sidebar } from "../../../components/Sidebar";
 import TableInstance from "../../../components/Table";
@@ -41,12 +42,14 @@ export default function Hipertensos() {
                             <TableInstance tableData={hipertensos} columnsData={[
                                     {
                                         Header: 'UBS',
-                                        accessor: 'ubs'
+                                        accessor: 'ubs',
+                                        Filter: SelectColumnFilter,
                                     },
                                     {
                                         Header: 'INE',
                                         accessor: 'ine',
-                                        isNumeric: true
+                                        isNumeric: true,
+                                        Filter: SelectColumnFilter,
                                     },
                                     {
                                         Header: 'CNS',
@@ -63,7 +66,8 @@ export default function Hipertensos() {
                                     {
                                         Header: 'OK?',
                                         accessor: 'ok',
-                                        Cell: ({value}) => <Checkbox isChecked={value}></Checkbox>
+                                        Cell: ({value}) => <Checkbox isChecked={value}></Checkbox>,
+                                        Filter: SelectColumnFilter,
                                     }
                             ]}/>
                         </>
