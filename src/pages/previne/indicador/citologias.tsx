@@ -1,9 +1,7 @@
 import { Checkbox } from "@chakra-ui/checkbox";
 import { Box, Flex, Text } from "@chakra-ui/layout";
 import { Spinner } from "@chakra-ui/spinner";
-import { Table, Tbody, Th, Thead, Tr } from "@chakra-ui/table";
 import { useState, useEffect } from "react";
-import ExportCSV from "../../../components/ExportCsv";
 import SelectColumnFilter from "../../../components/Filter/SelectColumFilter";
 import { Header } from "../../../components/Header";
 import { Sidebar } from "../../../components/Sidebar";
@@ -39,7 +37,6 @@ export default function Citologias() {
                         </Flex>
                     ) : (
                         <>
-                            <ExportCSV csvData={mulheres} header="UBS,INE,CNS,CPF,NOME,IDADE,OK?" />
                             <TableInstance tableData={mulheres} columnsData={[
                                 {
                                     Header: 'UBS',
