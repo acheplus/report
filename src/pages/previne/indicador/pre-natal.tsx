@@ -2,6 +2,8 @@ import { Checkbox } from "@chakra-ui/checkbox";
 import { Box, Flex, Text } from "@chakra-ui/layout";
 import { Spinner } from "@chakra-ui/spinner";
 import { useEffect, useState } from "react";
+import moment from 'moment-timezone';
+import Moment from "react-moment";
 import SelectColumnFilter from "../../../components/Filter/SelectColumFilter";
 import { Header } from "../../../components/Header";
 import { Sidebar } from "../../../components/Sidebar";
@@ -9,6 +11,10 @@ import TableInstance from "../../../components/Table";
 import { useGestantes } from "../../../services/hooks/previne/useGestantes";
 import { withSSRAuth } from "../../../utils/withSSRAuth";
 
+Moment.globalMoment = moment
+Moment.globalLocale = 'pt-br';
+Moment.globalLocal = true;
+Moment.globalTimezone = 'America/Maceio';
 
 export default function PreNatal() {
     const [ gestantes, setGestantes ] = useState<any>()
@@ -64,6 +70,14 @@ export default function PreNatal() {
                                 {
                                     Header: 'DUM',
                                     accessor: 'dum',
+                                    Cell: ({value}) => <Moment parse='D-MM-Y' date={value} format="D/M/Y" />
+                                },
+                                {
+                                    id: 'dpp',
+                                    Header: 'DPP',
+                                    accessor: 'dum',
+                                    Cell: ({value}) => <Moment parse='D-MM-Y' date={value} format="D/M/Y"
+                                        add={{days:7, months: -3, years: 1}} />,
                                 },
                                 {
                                     Header: 'Consultas',

@@ -3,7 +3,7 @@ import { Button, Icon } from '@chakra-ui/react';
 import { FaDownload } from 'react-icons/fa'
 
 
-export default function ExportCSV ({csvData, header}) {
+export default function ExportCSV ({csvData, headers}) {
    
     function ConvertToCSV(objArray) {
         var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
@@ -32,7 +32,7 @@ export default function ExportCSV ({csvData, header}) {
     function exportCsv() {
         let csvtemp = csvData.map(data => data.original)
         let csv = ConvertToCSV(JSON.stringify(csvtemp))
-        window.open("data:text/csv;charset=iso-8859-1," + escape(header) + escape("\n") + escape(csv))
+        window.open("data:text/csv;charset=iso-8859-1," + escape(headers.map(e=>e.Header)) + escape("\n") + escape(csv))
     }
 
     return (
