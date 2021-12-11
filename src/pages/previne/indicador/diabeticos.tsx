@@ -2,7 +2,6 @@ import { Checkbox } from "@chakra-ui/checkbox";
 import { Box, Flex, Text } from "@chakra-ui/layout";
 import { Spinner } from "@chakra-ui/spinner";
 import { useState, useEffect } from "react";
-import ExportCSV from "../../../components/ExportCsv";
 import SelectColumnFilter from "../../../components/Filter/SelectColumFilter";
 import { Header } from "../../../components/Header";
 import { Sidebar } from "../../../components/Sidebar";
@@ -38,7 +37,6 @@ export default function Diabeticos() {
                         </Flex>
                     ) : (
                         <>
-                            <ExportCSV csvData={diabeticos} header="UBS,INE,CNS,CPF,NOME,OK?" />
                             <TableInstance tableData={diabeticos} columnsData={[
                                     {
                                         Header: 'UBS',

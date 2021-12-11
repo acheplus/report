@@ -2,7 +2,6 @@ import { Checkbox } from "@chakra-ui/checkbox";
 import { Box, Flex, Text } from "@chakra-ui/layout";
 import { Spinner } from "@chakra-ui/spinner";
 import { useEffect, useState } from "react";
-import ExportCSV from "../../../components/ExportCsv";
 import SelectColumnFilter from "../../../components/Filter/SelectColumFilter";
 import { Header } from "../../../components/Header";
 import { Sidebar } from "../../../components/Sidebar";
@@ -38,7 +37,6 @@ export default function PreNatal() {
                         </Flex>
                     ) : (
                         <>
-                            <ExportCSV csvData={gestantes} header="UBS,INE,CNS,CPF,NOME,DUM,CONSULTAS,TESTES,ODONTO" />
                             <TableInstance tableData={gestantes} columnsData={[
                                 {
                                     Header: 'UBS',

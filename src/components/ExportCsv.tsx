@@ -30,7 +30,8 @@ export default function ExportCSV ({csvData, header}) {
     }
     
     function exportCsv() {
-        let csv = ConvertToCSV(JSON.stringify(csvData))
+        let csvtemp = csvData.map(data => data.original)
+        let csv = ConvertToCSV(JSON.stringify(csvtemp))
         window.open("data:text/csv;charset=iso-8859-1," + escape(header) + escape("\n") + escape(csv))
     }
 
