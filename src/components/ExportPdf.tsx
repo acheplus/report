@@ -34,8 +34,8 @@ export default function ExportPdf({csvData, headers}) {
             <Page size="A4" style={styles.page} orientation='landscape' debug={true}>
                 <View style={styles.section} debug={true}>
                     {
-                        headers.map((header) => (
-                            <Text style={styles.text}>{header.Header}</Text>
+                        headers.map((header, i) => (
+                            <Text key={i} style={styles.text}>{header.Header}</Text>
                         ))
                     }
                 </View>
@@ -46,7 +46,7 @@ export default function ExportPdf({csvData, headers}) {
                             return (
                                 
                                         // row.map((cell) => (
-                                            <Text style={styles.text}>
+                                            <Text key={i} style={styles.text}>
                                                 {typeof(row.original)}
                                             </Text>
                                         //     )
