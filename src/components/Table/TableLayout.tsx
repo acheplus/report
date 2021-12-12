@@ -3,8 +3,7 @@ import { Flex } from "@chakra-ui/layout";
 import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons'
 import { Pagination } from "../Pagination";
 import { useState } from "react";
-import ExportCSV from "../ExportCsv";
-import ExportPdf from "../ExportPdf";
+import ExportXls from "../ExportXls";
 
 const TableLayout = ({
     getTableProps,
@@ -22,8 +21,7 @@ const TableLayout = ({
 
     return (
         <Flex display='inline'>
-            <ExportCSV csvData={rows} headers={headers} />
-            {/* <ExportPdf csvData={rows} headers={headers} /> */}
+            <ExportXls csvData={rows} fileName={'download'} />
             <Table {...getTableProps()}>
                 <Thead>
                 {headerGroups.map((headerGroup, index) => (
