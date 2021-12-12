@@ -26,7 +26,7 @@ export function Sidebar() {
                     <NavLink href="/previne/indicador/diabeticos" icon={RiGitMergeLine}>Diabéticos</NavLink>
                 </NavSection>
                 <NavSection title="Cidadãos">
-                    <NavLink href="/cidadaos" icon={RiInputMethodLine}>Duplicados</NavLink>
+                    <NavLink href="/cidadaos/duplicados" icon={RiInputMethodLine}>Duplicados</NavLink>
                 </NavSection>
             </Stack>
         </Box>
