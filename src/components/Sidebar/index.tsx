@@ -1,5 +1,7 @@
 import { Box, Stack, Divider } from '@chakra-ui/react'
-import { RiContactsLine, RiDashboardLine, RiGitMergeLine, RiInputMethodLine } from 'react-icons/ri'
+import { GiHealthDecrease, GiBrokenHeartZone } from "react-icons/gi";
+import { MdOutlinePregnantWoman, MdChildFriendly, MdSpaceDashboard } from "react-icons/md";
+import { IoWomanSharp, IoDuplicate } from "react-icons/io5";
 import { Logo } from './Logo'
 import { NavLink } from './NavLink'
 import { NavSection } from './NavSection'
@@ -15,18 +17,18 @@ export function Sidebar() {
             <Divider />
             <Stack spacing="6" align="flex-start" p="2">
                 <NavSection title="Dashboard">
-                    <NavLink href="/dashboard" icon={RiDashboardLine}>Início</NavLink>
+                    <NavLink href="/dashboard" icon={MdSpaceDashboard}>Início</NavLink>
                     {/* <NavLink href="/users" icon={RiContactsLine}>Usuários</NavLink> */}
                 </NavSection>
                 <NavSection title="Previne Brasil">
-                    <NavLink href="/previne/indicador/pre-natal" icon={RiInputMethodLine}>Pré-Natal</NavLink>
-                    <NavLink href="/previne/indicador/citologias" icon={RiGitMergeLine}>Saúde da Mulher</NavLink>
-                    <NavLink href="/previne/indicador/vacinas" icon={RiGitMergeLine}>Saúde da Criança</NavLink>
-                    <NavLink href="/previne/indicador/hipertensos" icon={RiGitMergeLine}>Hipertensos</NavLink>
-                    <NavLink href="/previne/indicador/diabeticos" icon={RiGitMergeLine}>Diabéticos</NavLink>
+                    <NavLink href="/previne/indicador/pre-natal" icon={MdOutlinePregnantWoman}>Pré-Natal</NavLink>
+                    <NavLink href="/previne/indicador/citologias" icon={IoWomanSharp}>Saúde da Mulher</NavLink>
+                    <NavLink href="/previne/indicador/vacinas" icon={MdChildFriendly}>Saúde da Criança</NavLink>
+                    <NavLink href="/previne/indicador/hipertensos" icon={GiHealthDecrease}>Hipertensos</NavLink>
+                    <NavLink href="/previne/indicador/diabeticos" icon={GiBrokenHeartZone}>Diabéticos</NavLink>
                 </NavSection>
                 <NavSection title="Cidadãos">
-                    <NavLink href="/cidadaos/duplicados" icon={RiInputMethodLine}>Duplicados</NavLink>
+                    <NavLink href="/cidadaos/duplicados" icon={IoDuplicate}>Duplicados</NavLink>
                 </NavSection>
             </Stack>
         </Box>
