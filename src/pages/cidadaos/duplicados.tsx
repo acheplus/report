@@ -39,6 +39,15 @@ export default function Duplicados() {
                         <>
                             <TableInstance tableData={duplicados} columnsData={[
                                 {
+                                    Header: 'UBS',
+                                    accessor: 'ubs'
+                                },
+                                {
+                                    Header: 'INE',
+                                    accessor: 'ine',
+                                    isNumeric: true,
+                                },
+                                {
                                     Header: 'CNS',
                                     accessor: 'cns'
                                 },

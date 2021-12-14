@@ -2,6 +2,8 @@ import { useQuery } from 'react-query'
 import { api } from '../../../services/apiClient'
 
 type Duplicados = {
+    ubs: string;
+    ine: number;
     cns: string;
     cpf: string;
     nome: string;
@@ -20,6 +22,8 @@ export async function getDuplicados(): Promise<any> {
 
     const duplicados = data.duplicados.map(cidadao => {
         return {
+            ubs: cidadao.ubs,
+            ine: cidadao.ine,
             cns: cidadao.nu_cns,
             cpf: cidadao.nu_cpf,
             nome: cidadao.no_cidadao,
