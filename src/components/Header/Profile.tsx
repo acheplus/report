@@ -1,11 +1,16 @@
-import { Box, Avatar, Flex, Icon, HStack, Button } from '@chakra-ui/react'
+import {Box, Avatar, Flex, Icon, HStack, Button, Link} from '@chakra-ui/react'
 import { FaUserCircle } from "react-icons/fa";
 import { RiNotificationLine, RiUserAddLine } from 'react-icons/ri'
 import { useContext } from 'react'
 import { AuthContext, signOut } from '../../contexts/AuthContext'
 
 export function Profile() {
-    const { user } = useContext(AuthContext)
+    const { user, authChannel } = useContext(AuthContext)
+
+    const handleSignOut = () => {
+        signOut()
+        authChannel.postMessage('signOut')
+    }
 
     return (
         <Flex
@@ -34,12 +39,14 @@ export function Profile() {
             </Flex>
             <Avatar name="Bart Simpson" size="md" as={FaUserCircle} />
             <Flex direction="column">
-                <Box mr="4" align="center" padding="4">
-                    <h4>{user?.username}</h4>
-                    <small>{user?.email}</small>
-                </Box>
+                <Link href="/users/profile">
+                    <Box mr="4" align="center" padding="4">
+                        <h4>{user?.username}</h4>
+                        <small>{user?.email}</small>
+                    </Box>
+                </Link>
             </Flex>
-            <Button onClick={signOut}>Sair</Button>
+            <Button onClick={handleSignOut}>Sair</Button>
         </Flex>
       </Flex>
     )

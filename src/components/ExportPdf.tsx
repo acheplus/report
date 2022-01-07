@@ -42,7 +42,6 @@ export default function ExportPdf({csvData, headers}) {
                 <View style={styles.section} debug={true}>
                     {
                         csvData.map((row, i) => {
-                            console.log(row.original)
                             return (
                                 
                                         // row.map((cell) => (

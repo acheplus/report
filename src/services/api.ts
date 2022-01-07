@@ -1,12 +1,12 @@
 import axios, { AxiosError } from 'axios'
 import { setCookie, parseCookies } from 'nookies'
-import { signOut } from '../contexts/AuthContext'
+import { AuthContext, signOut } from '../contexts/AuthContext'
 import { AuthTokenError } from './errors/AuthTokenError'
 
 let isRefreshing = false
 let failedRequestQueue = []
 
-export function setupAPIClient(ctx = undefined) {
+export function setupAPIClient(ctx = null) {
     let cookies = parseCookies(ctx)
 
     const api = axios.create({

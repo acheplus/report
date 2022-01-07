@@ -26,7 +26,6 @@ export function withSSRAuth<P>(fn: GetServerSideProps<P>, options?: WithSSRAuthO
         if (options) {
             const user = decode<{permissions: string[], roles: string[]}>(token)
             const { permissions, roles } = options
-            console.log(user)
 
             const userHasValidPermissions = validateUserPermissions({
                 user,
@@ -37,7 +36,7 @@ export function withSSRAuth<P>(fn: GetServerSideProps<P>, options?: WithSSRAuthO
             if (!userHasValidPermissions) {
                 return {
                     redirect: {
-                        destination: '/dashboard',
+                        destination: '/previne',
                         permanent: false
                     }
                 }
@@ -49,7 +48,6 @@ export function withSSRAuth<P>(fn: GetServerSideProps<P>, options?: WithSSRAuthO
         } catch (err) {
             destroyCookie(ctx, 'achereport.token')
             destroyCookie(ctx, 'achereport.refreshtoken')
-            console.log(err)
             return {
                 redirect: {
                     destination: '/',

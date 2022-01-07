@@ -17,7 +17,7 @@ export function Sidebar() {
             <Divider />
             <Stack spacing="6" align="flex-start" p="2">
                 <NavSection title="Dashboard">
-                    <NavLink href="/dashboard" icon={MdSpaceDashboard}>Início</NavLink>
+                    <NavLink href="/previne" icon={MdSpaceDashboard}>Início</NavLink>
                     {/* <NavLink href="/users" icon={RiContactsLine}>Usuários</NavLink> */}
                 </NavSection>
                 <NavSection title="Previne Brasil">

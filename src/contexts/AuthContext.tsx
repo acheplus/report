@@ -1,7 +1,8 @@
 import { createContext, ReactNode, useState , useEffect} from 'react'
 import { setCookie, parseCookies, destroyCookie } from 'nookies'
 import { api } from '../services/apiClient'
-import Router from 'next/router'
+import Router, {useRouter} from 'next/router'
+import {BroadcastChannel} from "broadcast-channel";
 
 type User = {
     username: string;
@@ -20,6 +21,7 @@ type AuthContextData = {
     signIn(credentials): Promise<void>;
     user: User;
     isAuthenticated: boolean;
+    authChannel: BroadcastChannel;
 }
 
 type AuthProviderProps = {
@@ -27,32 +29,31 @@ type AuthProviderProps = {
 }
 
 export const AuthContext = createContext({} as AuthContextData)
-let authChannel: BroadcastChannel
 
 export function signOut() {
-    destroyCookie(undefined, 'achereport.token')
-    destroyCookie(undefined, 'achereport.refreshtoken')
-    authChannel.postMessage('signOut')
-
-    Router.push('/')
+    destroyCookie({}, 'achereport.token', {
+        path: '/'
+    })
+    destroyCookie({}, 'achereport.refreshtoken', {
+        path: '/'
+    })
+    Router.push("/")
 }
 
 export function AuthProvider({children}: AuthProviderProps) {
+    const router = useRouter()
     const [ user, setUser] = useState<User>()
     const isAuthenticated = !!user;
+    let authChannel: BroadcastChannel = new BroadcastChannel('auth')
 
     useEffect(() => {
-        if (!authChannel) {
-            authChannel = new BroadcastChannel('auth')
-        }
+
         authChannel.onmessage = (message) => {
-            switch(message.data){
+            switch(message){
                 case 'signOut':
-                    signOut()
-                    break;
+                    router.push('/')
                 case 'signIn':
-                    Router.push('/dashboard')
-                    break
+                    router.push('/previne')
                 default:
                     break
             }
@@ -61,9 +62,6 @@ export function AuthProvider({children}: AuthProviderProps) {
 
     useEffect(() => {
         const { 'achereport.token': token} = parseCookies()
-        if (!authChannel) {
-            authChannel = new BroadcastChannel('auth')
-        }
 
         if(token) {
             api.get('/me')
@@ -88,11 +86,11 @@ export function AuthProvider({children}: AuthProviderProps) {
 
             const { token, refreshToken, permissions, roles, username, prefeitura } = response.data
 
-            setCookie(undefined, 'achereport.token', token, {
+            setCookie(null, 'achereport.token', token, {
                 maxAge: 60 * 60 * 24 * 30, // 30 days
                 path: '/'
             })
-            setCookie(undefined, 'achereport.refreshtoken', refreshToken, {
+            setCookie(null, 'achereport.refreshtoken', refreshToken, {
                 maxAge: 60 * 60 * 24 * 30, // 30 days
                 path: '/'
             })
@@ -109,13 +107,13 @@ export function AuthProvider({children}: AuthProviderProps) {
 
             authChannel.postMessage('signIn')
 
-            Router.push('/dashboard')
+            await router.push('/previne')
         } catch (err) {
-            console.log(err)
+            alert('Usuário ou senha incorretos.')
         }
     }
     return (
-        <AuthContext.Provider value={{ signIn, isAuthenticated, user}}>
+        <AuthContext.Provider value={{ signIn, isAuthenticated, user, authChannel}}>
             {children}
         </AuthContext.Provider>
     )
