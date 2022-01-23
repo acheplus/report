@@ -12,7 +12,7 @@ export function Sidebar() {
             margin={0} h="100%"
             borderStartRadius={10} bgColor="#1b9b4e"
             position="fixed" left={0} top={0} 
-            justifyContent="center" >
+            justifyContent="center" textAlign="center">
             <Logo />
             <Divider />
             <Stack spacing="6" align="flex-start" p="2">

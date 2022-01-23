@@ -6,11 +6,12 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
 import { useMutation } from 'react-query'
 
 import { Input } from '../../components/Form/Input'
+import { Select } from '../../components/Form/Select'
 import { Header } from '../../components/Header'
 import { Sidebar } from '../../components/Sidebar'
 import { api } from '../../services/apiClient'
 import { useRouter } from 'next/router'
-import { FaEnvelope } from 'react-icons/fa'
+import { FaEnvelope, FaUsers, FaUser, FaLock, FaBirthdayCake, FaDochub, FaPhone, FaFileUpload } from 'react-icons/fa'
 import {useContext} from "react";
 import {AuthContext} from "../../contexts/AuthContext";
 import {withSSRAuth} from "../../utils/withSSRAuth";
@@ -74,8 +75,29 @@ export default function UserProfile() {
 
                     <VStack spacing="8">
                         <SimpleGrid minChildWidth="248px" spacing="8" w="100%">
-                            <Input iconBase={FaEnvelope} error={formState.errors.password} {...register('password')} name="password" type="password" label="Senha" />
-                            <Input iconBase={FaEnvelope} error={formState.errors.password_confirmation} {...register('password_confirmation')} name="password_confirmation" type="password" label="Confirmação da senha" />
+                            <Input iconBase={FaUser}  name="user" type="user" label="Nome Completo" />
+                            <Input iconBase={FaUsers}  name="apelido_user" type="apelido_user" label="Apelido" />
+                            <Input iconBase={FaBirthdayCake}  name="birthday" type="birthday" label="Data de Nascimento" />
+
+                        </SimpleGrid>
+                    </VStack>
+                    <VStack spacing="8">
+                        <SimpleGrid minChildWidth="248px" spacing="8" w="100%">
+                        <Select iconBase={FaPhone}  name="TypeDocumento" type="TypeDocumento" label="Telefone" />
+                            <Select iconBase={FaDochub}  name="TypeDocumento" type="TypeDocumento" label="Tipo de Documento" />
+                            <Input iconBase={FaDochub}  name="TypeDocumento" type="TypeDocumento" label="Numero do Documento" />
+                        </SimpleGrid>
+                    </VStack>
+                    <VStack spacing="8">
+                        <SimpleGrid minChildWidth="248px" spacing="8" w="100%">
+                        <Input iconBase={FaEnvelope}  name="name_user" type="name_user" label="Email Completo" />
+                        <Input iconBase={FaFileUpload}  name="TypeDocumento" type="TypeDocumento" label="Foto (Avatar)" />
+                        </SimpleGrid>
+                    </VStack>
+                    <VStack spacing="8">
+                        <SimpleGrid minChildWidth="248px" spacing="8" w="100%">
+                            <Input iconBase={FaLock} error={formState.errors.password} {...register('password')} name="password" type="password" label="Senha" />
+                            <Input iconBase={FaLock} error={formState.errors.password_confirmation} {...register('password_confirmation')} name="password_confirmation" type="password" label="Confirmação da senha" />
                         </SimpleGrid>
                     </VStack>
 
