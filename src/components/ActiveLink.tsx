@@ -26,7 +26,7 @@ export function ActiveLink({ children, shouldMatchExactHref=false,
     return (
         <Link {...rest}>
             {cloneElement(children, {
-                bgColor: isActive ? '#efefef' : '',
+                bgColor: isActive ? '#ffffff' : '',
                 color: isActive ? '#1b9b4e' : '',
                 borderRadius: isActive ? '30px 0 0 30px' : '',
             })}

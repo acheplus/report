@@ -10,7 +10,7 @@ export function Header() {
       as="header"
       w="calc(100% - 160px)"
       bg="white"
-      maxWidth={1480}
+      // maxWidth={1480}
       h="8"
       p="10"
       px="3"

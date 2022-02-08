@@ -6,7 +6,7 @@ export function Logo () {
             <Text fontSize="2xl"
                 fontWeight="bold"
                 letterSpacing="tight"
-                m="4">acheplus
+                m="4">Acheplus
                 <Text as="span" ml="1" color="green.500">.</Text>
             </Text>
         </Flex>

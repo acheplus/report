@@ -10,7 +10,7 @@ export function SearchBox() {
     return (
         <Flex as="label"
             flex="1"
-            py="4"
+            py="3"
             px="8"
             ml="6"
             maxWidth={400}

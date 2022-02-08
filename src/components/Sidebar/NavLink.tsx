@@ -13,8 +13,8 @@ export function NavLink({icon, href, children, ...rest}: NavLinkProps) {
         <ActiveLink href={href} passHref>
             <ChakraLink display="flex" align="center"
                 marginLeft={1} pl={3} pt={1}
-                w="153px" h={6} _hover={{
-                    bg: "#efefef",
+                w="153px" h={8} _hover={{
+                    bg: "#ffffff",
                     color: "#1b9b4e",
                     borderRadius: "30px 0px 0px 30px"
                 }}  {...rest}>
