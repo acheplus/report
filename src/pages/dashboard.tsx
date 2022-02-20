@@ -75,7 +75,7 @@ export default function Dashboard() {
                 <Sidebar />
 
                 <SimpleGrid marginLeft={165} flex="1" gap="4"
-                    minChildWidth="320px" align="flex-start"
+                    minChildWidth="320px"
                     marginTop={20}>
                     <Box
                         p="8"

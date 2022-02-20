@@ -9,7 +9,7 @@ export function Prefeitura() {
         <Flex align="flex-start">
             <Image alt="Prefeitura Municipal" size="md" as={FaSynagogue} fallbackSrc="/assets/" boxSize="50px" borderRadius={15} />
                 <Flex direction="column">
-                    <Box mr="20" align="center" padding="4">
+                    <Box mr="20" padding="4">
                         <h4>Município: {user?.prefeitura}</h4>
                     </Box>
                 </Flex>

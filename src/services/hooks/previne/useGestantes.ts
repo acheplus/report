@@ -9,6 +9,7 @@ type Gestante = {
     cpf: string;
     nome: string;
     dum: string;
+    captacao: boolean;
     consultas: number;
     testes: boolean;
     odonto: boolean;
@@ -39,6 +40,7 @@ export async function getGestantes(): Promise<any> {
             dum: new Date(gestante.dum).toLocaleDateString('pt-BR', {
                 timeZone: 'UTC'
             }),
+            captacao: gestante.captacao,
             consultas: gestante.consultas,
             testes: gestante.citopatologico,
             odonto: gestante.odonto,

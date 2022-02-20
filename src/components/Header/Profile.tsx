@@ -40,7 +40,7 @@ export function Profile() {
             <Avatar name="Bart Simpson" size="md" as={FaUserCircle} />
             <Flex direction="column">
                 <Link href="/users/profile">
-                    <Box mr="4" align="center" padding="4">
+                    <Box mr="4" padding="4">
                         <h4>{user?.username}</h4>
                         <small>{user?.email}</small>
                     </Box>

@@ -80,6 +80,12 @@ export default function PreNatal() {
                                         add={{days:7, months: -3, years: 1}} />,
                                 },
                                 {
+                                    Header: 'Captação',
+                                    accessor: 'captacao',
+                                    Cell: ({value}) => <Checkbox isChecked={value}></Checkbox>,
+                                    Filter: SelectColumnFilter,
+                                },
+                                {
                                     Header: 'Consultas',
                                     accessor: 'consultas',
                                     isNumeric: true,

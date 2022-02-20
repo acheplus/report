@@ -28,10 +28,10 @@ const SelectBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
     <FormControl isInvalid={!!error}>
       {!!label && <FormLabel htmlFor={name}>{label}</FormLabel>}
       <InputGroup
-        focusBorderColor="teal.200"
+        // focusBorderColor="teal.200"
         variant="filled"
-        align="center"
-        br="5px"
+        // align="center"
+        // br="5px"
         size="lg"
       >
         <InputLeftElement pointerEvents="none">

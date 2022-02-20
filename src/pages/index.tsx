@@ -116,7 +116,9 @@ export default function Home() {
           />
         </Stack>
         <Flex width="100%" marginTop="2px">
-          <Checkbox marginTop="4" label="Lembrar-me" width="100%">
+          <Checkbox marginTop="4" 
+          // label="Lembrar-me"
+           width="100%">
             <Text fontSize="10px"> Lembrar-me</Text>
           </Checkbox>
           <Link
