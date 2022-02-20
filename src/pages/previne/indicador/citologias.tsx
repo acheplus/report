@@ -65,6 +65,7 @@ export default function Citologias() {
                                     Header: 'Idade?',
                                     accessor: 'idade',
                                     isNumeric: true,
+                                    Filter: SelectColumnFilter,
                                 },
                                 {
                                     Header: 'OK?',
