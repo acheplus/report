@@ -3,7 +3,7 @@ import { Link as ChakraLink, Icon, Text, ChakraProps as ChakraLinkProps } from '
 import { ActiveLink } from '../ActiveLink'
 
 interface NavLinkProps extends ChakraLinkProps {
-    icon: ElementType;
+    icon: string;
     href: string;
     children: string;
 }
@@ -12,14 +12,14 @@ export function NavLink({icon, href, children, ...rest}: NavLinkProps) {
     return (
         <ActiveLink href={href} passHref>
             <ChakraLink display="flex"
-                marginLeft={1} pl={3} pt={1}
-                w="153px" h={8} _hover={{
-                    bg: "#ffffff",
+                pt='0.5em'
+                w="9.5em" h='2.2em' _hover={{
+                    bg: "gray.50",
                     color: "#1b9b4e",
-                    borderRadius: "30px 0px 0px 30px"
+                    borderRadius: "1.5em 0 0 1.5em"
                 }}  {...rest}>
-                <Icon as={icon} fontSize="20" />
-                <Text fontSize={12} ml="2" fontWeight="tiny">{children}</Text>
+                <Icon fontSize="1.5em" ><path d={icon} fill='currentColor'></path></Icon>
+                <Text fontSize='0.9em' ml="1" fontWeight="tiny">{children}</Text>
             </ChakraLink>
         </ActiveLink>
     )

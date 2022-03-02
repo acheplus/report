@@ -3,7 +3,7 @@ import {useTable, useSortBy, useFilters} from 'react-table';
 import { matchSorter } from 'match-sorter'
 import TableLayout from "./TableLayout";
 
-const TableInstance = ({ tableData, columnsData }) => {
+const TableInstance = ({ tableData, columnsData, icon, title }) => {
     const [columns, data] = useMemo(
       () => {
         return [columnsData, tableData];
@@ -18,13 +18,14 @@ const TableInstance = ({ tableData, columnsData }) => {
         const count = preFilteredRows.length
     
         return (
-        <input
-            value={filterValue || ''}
-            onChange={e => {
-            setFilter(e.target.value || undefined) // Set undefined to remove the filter entirely
-            }}
-            placeholder={`Procurar em ${count} registros...`}
-        />
+            <></>
+        // <input
+        //     value={filterValue || ''}
+        //     onChange={e => {
+        //     setFilter(e.target.value || undefined) // Set undefined to remove the filter entirely
+        //     }}
+        //     placeholder={`Procurar ...`}
+        // />
         )
     }
 
@@ -62,7 +63,7 @@ const TableInstance = ({ tableData, columnsData }) => {
     const tableInstance = useTable({ columns, data, defaultColumn, filterTypes }, useFilters, useSortBy);
 
     return (
-        <TableLayout {...tableInstance} />
+        <TableLayout icon={icon} title={title} {...tableInstance} />
     );
 }
 

@@ -1,5 +1,6 @@
 import { Checkbox } from "@chakra-ui/checkbox";
 import { Box, Flex, Text } from "@chakra-ui/layout";
+import { mdiAccountMultiple } from '@mdi/js';
 import { Spinner } from "@chakra-ui/spinner";
 import { useState, useEffect } from "react";
 import Moment from "react-moment";
@@ -36,8 +37,9 @@ export default function Duplicados() {
                             <Text>Falha ao obter dados...</Text>
                         </Flex>
                     ) : (
-                        <>
-                            <TableInstance tableData={duplicados} columnsData={[
+                        <Box mt='1em' borderRadius='1.2em' padding='0.8em' bgColor='white' w='100%'>
+                            <TableInstance tableData={duplicados} icon={mdiAccountMultiple} title='DUPLICADOS'
+                            columnsData={[
                                 {
                                     Header: 'UBS',
                                     accessor: 'ubs'
@@ -70,7 +72,7 @@ export default function Duplicados() {
                                     accessor: 'mae',
                                 },
                             ]} />
-                        </>
+                        </Box>
                     )
                 }
             </Flex>

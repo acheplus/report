@@ -1,4 +1,5 @@
-import { Button, Icon } from '@chakra-ui/react';
+import { Button, Icon, Text } from '@chakra-ui/react';
+import { mdiDownloadMultiple } from '@mdi/js';
 import * as FileSaver from 'file-saver'
 import { FaDownload } from 'react-icons/fa';
 import * as XLSX from 'xlsx'
@@ -16,6 +17,9 @@ export default function ExportXls({csvData, fileName}) {
     }
 
     return (
-        <Button colorScheme='gray' onClick={(e) => exportToCSV(csvData,fileName)}>Salvar <Icon as={FaDownload}></Icon></Button>
+        <Button bgColor='white' color='gray' border='1px' onClick={(e) => exportToCSV(csvData,fileName)}>
+            <Icon><path fill='currentColor' d={mdiDownloadMultiple}></path></Icon>
+            <Text>Salvar</Text>
+            </Button>
     )
 }

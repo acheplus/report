@@ -1,5 +1,6 @@
 import { Checkbox } from "@chakra-ui/checkbox";
 import { Box, Flex, Text } from "@chakra-ui/layout";
+import { mdiAccountHeart } from '@mdi/js';
 import { Spinner } from "@chakra-ui/spinner";
 import { useState, useEffect } from "react";
 import SelectColumnFilter from "../../../components/Filter/SelectColumFilter";
@@ -36,8 +37,9 @@ export default function Hipertensos() {
                             <Text>Falha ao obter dados...</Text>
                         </Flex>
                     ) : (
-                        <>
-                            <TableInstance tableData={hipertensos} columnsData={[
+                        <Box mt='1em' borderRadius='1.2em' padding='0.8em' bgColor='white' w='100%'>
+                            <TableInstance tableData={hipertensos} icon={mdiAccountHeart} title='HIPERTENSOS'
+                            columnsData={[
                                     {
                                         Header: 'UBS',
                                         accessor: 'ubs',
@@ -68,7 +70,7 @@ export default function Hipertensos() {
                                         Filter: SelectColumnFilter,
                                     }
                             ]}/>
-                        </>
+                        </Box>
                     )
                 }
             </Flex>

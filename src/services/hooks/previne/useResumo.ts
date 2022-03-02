@@ -29,7 +29,9 @@ export async function getResumo(): Promise<any> {
     })
 
     const resumo = {
-        gestantes: gestantes
+        gestantes: gestantes,
+        populacao_ibge: data.populacao_ibge,
+        cadastros_esus: data.cadastros_esus
     }
 
     return {

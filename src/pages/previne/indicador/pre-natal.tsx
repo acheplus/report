@@ -1,5 +1,6 @@
 import { Checkbox } from "@chakra-ui/checkbox";
 import { Box, Flex, Text } from "@chakra-ui/layout";
+import { mdiHumanPregnant } from "@mdi/js";
 import { Spinner } from "@chakra-ui/spinner";
 import { useEffect, useState } from "react";
 import moment from 'moment-timezone';
@@ -10,6 +11,7 @@ import { Sidebar } from "../../../components/Sidebar";
 import TableInstance from "../../../components/Table";
 import { useGestantes } from "../../../services/hooks/previne/useGestantes";
 import { withSSRAuth } from "../../../utils/withSSRAuth";
+import { Icon } from "@chakra-ui/react";
 
 Moment.globalMoment = moment
 Moment.globalLocale = 'pt-br';
@@ -29,7 +31,7 @@ export default function PreNatal() {
         marginTop={20}>
             <Header />
 
-            <Flex w="100%" my="1" maxWidth={1480} mx="auto" px="0">
+            <Flex px="0">
 
                 <Sidebar />
 
@@ -42,8 +44,9 @@ export default function PreNatal() {
                             <Text>Falha ao obter dados dos usuários</Text>
                         </Flex>
                     ) : (
-                        <>
-                            <TableInstance tableData={gestantes} columnsData={[
+                        <Box mt='1em' borderRadius='1.2em' padding='0.8em' bgColor='white'>
+                            <TableInstance tableData={gestantes} icon={mdiHumanPregnant} title='PRÉ-NATAL'
+                            columnsData={[
                                 {
                                     Header: 'UBS',
                                     accessor: 'ubs',
@@ -94,16 +97,16 @@ export default function PreNatal() {
                                     Header: 'Testes',
                                     accessor: 'testes',
                                     Cell: ({value}) => <Checkbox isChecked={value}></Checkbox>,
-                                    Filter: SelectColumnFilter,
+                                    // Filter: SelectColumnFilter,
                                 },
                                 {
                                     Header: 'Odonto?',
                                     accessor: 'odonto',
                                     Cell: ({value}) => <Checkbox isChecked={value}></Checkbox>,
-                                    Filter: SelectColumnFilter,
+                                    // Filter: SelectColumnFilter,
                                 },
                             ]} />
-                        </>
+                        </Box>
                     )
                 }
             </Flex>

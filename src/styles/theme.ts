@@ -14,17 +14,17 @@ export const theme = extendTheme({
           "300": "#9699B0",
           "200": "#B3B5C6",
           "100": "#D1D2DC",
-          "50": "#EEEEF2",
+          "50": "#EFEFEF",
         },
     },
     fonts: {
-        heading: 'Roboto',
-        body: 'Roboto'
+        heading: 'Roboto, sans-serif',
+        body: 'Roboto, sans-serif',
     },
     styles: {
         global: {
             body: {
-                bg: 'white',
+                bg: 'gray.50',
                 color: 'black'
             }
         }

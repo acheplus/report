@@ -1,5 +1,6 @@
 import { Checkbox } from "@chakra-ui/checkbox";
 import { Box, Flex, Text } from "@chakra-ui/layout";
+import { mdiHumanFemale } from '@mdi/js';
 import { Spinner } from "@chakra-ui/spinner";
 import { useState, useEffect } from "react";
 import SelectColumnFilter from "../../../components/Filter/SelectColumFilter";
@@ -36,8 +37,8 @@ export default function Citologias() {
                             <Text>Falha ao obter dados...</Text>
                         </Flex>
                     ) : (
-                        <>
-                            <TableInstance tableData={mulheres} columnsData={[
+                        <Box mt='1em' borderRadius='1.2em' padding='0.8em' bgColor='white' w='100%'>
+                            <TableInstance tableData={mulheres} icon={mdiHumanFemale} title='Saúde da Mulher' columnsData={[
                                 {
                                     Header: 'UBS',
                                     accessor: 'ubs',
@@ -74,7 +75,7 @@ export default function Citologias() {
                                     Filter: SelectColumnFilter,
                                 },
                             ]} />
-                        </>
+                        </Box>
                     )
                 }
             </Flex>
