@@ -26,7 +26,7 @@ export async function getHipertensos(): Promise<any> {
             ubs: hipertenso.no_unidade_saude,
             ine: Number(hipertenso.nu_ine),
             cns: hipertenso.nu_cns,
-            cpf: hipertenso.nu_cpf_cidadao,
+            cpf: hipertenso.nu_cpf,
             nome: hipertenso.no_cidadao,
             ok: hipertenso.pa,
             obs: hipertenso.obs,

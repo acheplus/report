@@ -26,7 +26,7 @@ export async function getDiabeticos(): Promise<any> {
             ubs: diabetico.no_unidade_saude,
             ine: Number(diabetico.nu_ine),
             cns: diabetico.nu_cns,
-            cpf: diabetico.nu_cpf_cidadao,
+            cpf: diabetico.nu_cpf,
             nome: diabetico.no_cidadao,
             ok: diabetico.pa,
             obs: diabetico.obs,
