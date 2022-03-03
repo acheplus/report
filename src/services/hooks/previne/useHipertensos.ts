@@ -8,6 +8,7 @@ type Hipertenso = {
     cpf: string;
     nome: string;
     ok: boolean;
+    obs: string;
 }
 
 export async function getHipertensos(): Promise<any> {
@@ -28,6 +29,7 @@ export async function getHipertensos(): Promise<any> {
             cpf: hipertenso.nu_cpf_cidadao,
             nome: hipertenso.no_cidadao,
             ok: hipertenso.pa,
+            obs: hipertenso.obs,
         }
     })
     return {

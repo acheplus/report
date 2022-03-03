@@ -68,6 +68,10 @@ export default function Hipertensos() {
                                         accessor: 'ok',
                                         Cell: ({value}) => <Checkbox isChecked={value}></Checkbox>,
                                         Filter: SelectColumnFilter,
+                                    },
+                                    {
+                                        Header: 'Obs.:',
+                                        accessor: 'obs'
                                     }
                             ]}/>
                         </Box>

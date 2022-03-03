@@ -68,6 +68,10 @@ export default function Diabeticos() {
                                         accessor: 'ok',
                                         Cell: ({value}) => <Checkbox isChecked={value}></Checkbox>,
                                         Filter: SelectColumnFilter,
+                                    },
+                                    {
+                                        Header: 'Obs.:',
+                                        accessor: 'obs'
                                     }
                             ]}/>
                         </Box>

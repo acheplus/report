@@ -8,6 +8,7 @@ type Diabetico = {
     cpf: string;
     nome: string;
     ok: boolean;
+    obs: string;
 }
 
 export async function getDiabeticos(): Promise<any> {
@@ -28,6 +29,7 @@ export async function getDiabeticos(): Promise<any> {
             cpf: diabetico.nu_cpf_cidadao,
             nome: diabetico.no_cidadao,
             ok: diabetico.pa,
+            obs: diabetico.obs,
         }
     })
     return {
