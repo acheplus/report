@@ -1,7 +1,6 @@
 import { Checkbox } from "@chakra-ui/checkbox";
 import { Box, Flex, Text } from "@chakra-ui/layout";
 import { mdiHumanPregnant } from "@mdi/js";
-import { Spinner } from "@chakra-ui/spinner";
 import { useEffect, useState } from "react";
 import moment from 'moment-timezone';
 import Moment from "react-moment";
@@ -12,6 +11,7 @@ import TableInstance from "../../../components/Table";
 import { useGestantes } from "../../../services/hooks/previne/useGestantes";
 import { withSSRAuth } from "../../../utils/withSSRAuth";
 import { Icon } from "@chakra-ui/react";
+import { SpinnerLogo } from "../../../components/Animation/SpinnerLogo";
 
 Moment.globalMoment = moment
 Moment.globalLocale = 'pt-br';
@@ -36,9 +36,9 @@ export default function PreNatal() {
                 <Sidebar />
 
                 { isLoading || !gestantes ? (
-                        <Flex justify="center">
-                            <Spinner />
-                        </Flex>
+                    <Flex justify="center" align='center' h='100vh' w='100vw'>
+                        <SpinnerLogo />
+                     </Flex>
                     ) : error ? (
                         <Flex justify="center">
                             <Text>Falha ao obter dados dos usuários</Text>

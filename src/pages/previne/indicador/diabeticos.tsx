@@ -1,7 +1,6 @@
 import { Checkbox } from "@chakra-ui/checkbox";
 import { Box, Flex, Text } from "@chakra-ui/layout";
 import { mdiLotionPlus } from '@mdi/js';
-import { Spinner } from "@chakra-ui/spinner";
 import { useState, useEffect } from "react";
 import SelectColumnFilter from "../../../components/Filter/SelectColumFilter";
 import { Header } from "../../../components/Header";
@@ -9,6 +8,7 @@ import { Sidebar } from "../../../components/Sidebar";
 import TableInstance from "../../../components/Table";
 import { useDiabeticos } from "../../../services/hooks/previne/useDiabeticos";
 import { withSSRAuth } from "../../../utils/withSSRAuth";
+import { SpinnerLogo } from "../../../components/Animation/SpinnerLogo";
 
 
 export default function Diabeticos() {
@@ -29,9 +29,9 @@ export default function Diabeticos() {
                 <Sidebar />
 
                 { isLoading || !diabeticos ? (
-                        <Flex justify="center">
-                            <Spinner />
-                        </Flex>
+                    <Flex justify="center" align='center' h='100vh' w='100vw'>
+                        <SpinnerLogo />
+                     </Flex>
                     ) : error ? (
                         <Flex justify="center">
                             <Text>Falha ao obter dados...</Text>

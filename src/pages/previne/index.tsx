@@ -1,20 +1,25 @@
 import { Box, Flex, Text, HStack, Center } from "@chakra-ui/layout";
-import { Spinner } from "@chakra-ui/spinner";
-import { mdiHome } from '@mdi/js';
+import { mdiAccountHeart, mdiHome, mdiHumanFemale, mdiHumanPregnant, mdiTeddyBear } from '@mdi/js';
 import { useState, useEffect } from "react";
-import SelectColumnFilter from "../../components/Filter/SelectColumFilter";
 import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
-import TableInstance from "../../components/Table";
 import { useResumo } from "../../services/hooks/previne/useResumo";
 import { withSSRAuth } from "../../utils/withSSRAuth";
+
+import { Icon, Progress, Stack, Tooltip } from "@chakra-ui/react";
+import { SpinnerLogo } from "../../components/Animation/SpinnerLogo";
+import Chart from "react-google-charts";
 
 
 export default function Resumo() {
     const [ resumo, setResumo ] = useState<any>()
     const { data: apiResponse, isLoading, isFetching, error } = useResumo()
 
+    const colors = {0:'pink', 1:'purple', 2:'teal', 3:'orange'}
+
     useEffect(() => {
+        console.log(1)
+        console.log(apiResponse?.resumo)
         setResumo(apiResponse?.resumo)
     }, [apiResponse])
 
@@ -27,11 +32,9 @@ export default function Resumo() {
 
                 <Sidebar />
 
-                      
-
                 { isLoading || !resumo ? (
-                        <Flex justify="center">
-                            <Spinner />
+                        <Flex justify="center" align='center' h='100vh' w='100vw'>
+                           <SpinnerLogo />
                         </Flex>
                     ) : error ? (
                         <Flex justify="center">
@@ -41,52 +44,119 @@ export default function Resumo() {
                         <Flex direction={"column"} w='100%'>    
 
                             <Text p='1.1em' bgColor='white' m='.5em' mr='1em' borderRadius='.8em'
-                            border='1px solid #DBDBDB' color='#919191' fontSize='1.1em'
+                            border='1px solid #DBDBDB' color='#919191' fontSize='100%'
                             fontFamily='Roboto, bold' fontWeight='bold'
                             >CADASTROS E INDICADORES DE SAÚDE</Text>
         
-                            <HStack m='.5em' fontWeight='bold'>
-                                <Center bgColor='green' color='white' p='1.1em' borderStartRadius='.6em'
+                            <HStack m='.5em' fontWeight='bold' w={'100%'}>
+                                <Center bgColor='#1b9b4e' color='white' p='1%' borderStartRadius='.6em' w='12.5%' fontSize='1vw'
                                 m={0}>POPULAÇÃO IBGE</Center>
-                                <Center bgColor='white' color='green' p='1.1em' borderEndRadius='.6em'
+                                <Center bgColor='white' color='green' p='1%' borderEndRadius='.6em' w='12.5%'
                                 m={0}>{resumo.populacao_ibge.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}</Center>
 
-                                <Center bgColor='green' color='white' p='1.1em' borderStartRadius='.6em'
+                                <Center bgColor='#1b9b4e' color='white' p='1%' borderStartRadius='.6em' w='12.5%' fontSize='1vw'
                                 m={0}>CADASTROS ESUS</Center>
-                                <Center bgColor='white' color='green' p='1.1em' borderEndRadius='.6em'
+                                <Center bgColor='white' color='green' p='1%' borderEndRadius='.6em' w='12.5%'
                                 m={0}>{resumo.cadastros_esus.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}</Center>
                             </HStack>
 
-                            <Box m='.5em' mr='1em' borderRadius='.8em' padding='1.2em' bgColor='white'>
-                                <TableInstance tableData={resumo.gestantes} icon={mdiHome} title='HOME'
-                                columnsData={[
-                                    {
-                                        Header: 'Vinculado à UBS',
-                                        accessor: 'ubs',
-                                        Filter: SelectColumnFilter,
-                                    },
-                                    {
-                                        Header: 'Gestantes',
-                                        accessor: 'total',
-                                        isNumeric: true,
-                                    },
-                                    {
-                                        Header: 'Com 6 Consultas',
-                                        accessor: 'consultas',
-                                        isNumeric: true,
-                                    },
-                                    {
-                                        Header: 'Realizado Exames',
-                                        accessor: 'exames',
-                                        isNumeric: true,
-                                    },
-                                    {
-                                        Header: 'Com consulta odonto',
-                                        accessor: 'odonto',
-                                        isNumeric: true,
-                                    },
-                                ]} />
-                            </Box>
+                            <HStack>
+                                <Box m='.5em' p='1em' borderRadius='.8em' w='48.2%' bg='white'>
+                                    <Center>HIPERTENSOS</Center>
+                                    <Chart chartType="ColumnChart" width='100%' height='400px'
+                                    data={ [ ['UBS', '% Atingido', {role: "style"}], ...resumo.hipertensos_total.map((d, i)=>([d[0], d[1], colors[i]])) ] }
+                                     />
+                                </Box>
+
+                                <Box m='.5em' p='1em' borderRadius='.8em' w='48.2%' bg='white'>
+                                    <Center>Diabéticos</Center>
+                                    <Chart chartType="ColumnChart" width='100%' height='400px'
+                                    data={ [ ['UBS', '% Atingido', {role: "style"}], ...resumo.diabeticos.map((d, i)=>([d[0], d[1], colors[i]])) ] }
+                                     />
+                                </Box>
+                            </HStack>
+
+                            <HStack>
+                                <Box m='.5em' p='1em' borderRadius='.8em' bgColor='#1b9b4e' w='19%' color='white'>
+                                    <Center>PRÉ-NATAL - Consultas</Center>
+                                    <HStack fontWeight='bold'>
+                                            <Icon fontSize='4em' m='-0.3em'><path fill='currentColor' d={mdiHumanPregnant} height='18em'></path> </Icon>
+                                            <Stack spacing={1.5} w='100%'>
+                                                {resumo.gestantes.slice(0,4).map((gestante, i)=>{
+                                                    return (
+                                                        <Tooltip label={gestante.ubs} hasArrow arrowSize={10}>
+                                                            <HStack><Progress value={Number((gestante.consultas/gestante.total*100).toFixed(0))} colorScheme={colors[i]} size='xg' w='60%' h='1em'/><Text fontSize='70%'>{(gestante.consultas/gestante.total*100).toFixed(0)}% Atingido</Text></HStack>
+                                                        </Tooltip>
+                                                    )
+                                                })}                                            
+                                            </Stack>
+                                    </HStack>
+                                </Box>
+
+                                <Box m='.5em' p='1em' borderRadius='.8em' bgColor='#1b9b4e' w='19%' color='white'>
+                                    <Center>PRÉ-NATAL - Exames</Center>
+                                    <HStack fontWeight='bold'>
+                                            <Icon fontSize='4em' m='-0.3em'><path fill='currentColor' d={mdiHumanPregnant} height='18em'></path> </Icon>
+                                            <Stack spacing={1.5} w='100%'>
+                                                {resumo.gestantes.slice(0,4).map((gestante, i)=>{
+                                                    return (
+                                                        <Tooltip label={gestante.ubs} hasArrow arrowSize={10}>
+                                                            <HStack><Progress value={Number((gestante.exames/gestante.total*100).toFixed(0))} colorScheme={colors[i]} size='xg' w='60%' h='1em'/><Text fontSize='70%'>{(gestante.exames/gestante.total*100).toFixed(0)}% Atingido</Text></HStack>
+                                                        </Tooltip>
+                                                    )
+                                                })}                                            
+                                            </Stack>
+                                    </HStack>
+                                </Box>
+
+                                <Box m='.5em' p='1em' borderRadius='.8em' bgColor='#1b9b4e' w='19%' color='white'>
+                                    <Center>PRÉ-NATAL - Odonto</Center>
+                                    <HStack fontWeight='bold'>
+                                            <Icon fontSize='4em' m='-0.3em'><path fill='currentColor' d={mdiHumanPregnant} height='18em'></path> </Icon>
+                                            <Stack spacing={1.5} w='100%'>
+                                                {resumo.gestantes.slice(0,4).map((gestante, i)=>{
+                                                    return (
+                                                        <Tooltip label={gestante.ubs} hasArrow arrowSize={10}>
+                                                            <HStack><Progress value={Number((gestante.odonto/gestante.total*100).toFixed(0))} colorScheme={colors[i]} size='xg' w='60%' h='1em'/><Text fontSize='70%'>{(gestante.odonto/gestante.total*100).toFixed(0)}% Atingido</Text></HStack>
+                                                        </Tooltip>
+                                                    )
+                                                })}                                            
+                                            </Stack>
+                                    </HStack>
+                                </Box>
+
+                                <Box m='.5em' p='1em' borderRadius='.8em' bgColor='#1b9b4e' w='19%' color='white'>
+                                    <Center>SAÚDE DA MULHER</Center>
+                                    <HStack fontWeight='bold'>
+                                            <Icon fontSize='4em' m='-0.3em'><path fill='currentColor' d={mdiHumanFemale} height='18em'></path> </Icon>
+                                            <Stack spacing={1.5} w='100%'>
+                                                {resumo.mulheres.slice(0,4).map((mulher, i)=>{
+                                                    return (
+                                                        <Tooltip label={mulher.ubs} hasArrow arrowSize={10}>
+                                                            <HStack><Progress value={Number((mulher.ok/mulher.total*100).toFixed(0))} colorScheme={colors[i]} size='xg' w='60%' h='1em'/><Text fontSize='70%'>{(mulher.ok/mulher.total*100).toFixed(0)}% Atingido</Text></HStack>
+                                                        </Tooltip>
+                                                    )
+                                                })}                                            
+                                            </Stack>
+                                    </HStack>
+                                </Box>
+
+                                <Box m='.5em' p='1em' borderRadius='.8em' bgColor='#1b9b4e' w='19%' color='white'>
+                                    <Center>SAÚDE DA CRIANÇA</Center>
+                                    <HStack fontWeight='bold'>
+                                            <Icon fontSize='4em' m='-0.3em'><path fill='currentColor' d={mdiTeddyBear} height='18em'></path> </Icon>
+                                            <Stack spacing={1.5} w='100%'>
+                                                {resumo.mulheres.slice(0,4).map((mulher, i)=>{
+                                                    return (
+                                                        <Tooltip label={mulher.ubs} hasArrow arrowSize={10}>
+                                                            <HStack><Progress value={Number((mulher.ok/mulher.total*100).toFixed(0))} colorScheme={colors[i]} size='xg' w='60%' h='1em'/><Text fontSize='70%'>{(mulher.ok/mulher.total*100).toFixed(0)}% Atingido</Text></HStack>
+                                                        </Tooltip>
+                                                    )
+                                                })}                                            
+                                            </Stack>
+                                    </HStack>
+                                </Box>
+                            </HStack>
                         </Flex>
                     )
                 }
