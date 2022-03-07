@@ -1,5 +1,5 @@
 import { Box, Flex, Text, HStack, Center } from "@chakra-ui/layout";
-import { mdiAccountHeart, mdiHome, mdiHumanFemale, mdiHumanPregnant, mdiTeddyBear } from '@mdi/js';
+import { mdiHumanFemale, mdiHumanPregnant, mdiTeddyBear } from '@mdi/js';
 import { useState, useEffect } from "react";
 import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
@@ -18,8 +18,6 @@ export default function Resumo() {
     const colors = {0:'pink', 1:'purple', 2:'teal', 3:'orange'}
 
     useEffect(() => {
-        console.log(1)
-        console.log(apiResponse?.resumo)
         setResumo(apiResponse?.resumo)
     }, [apiResponse])
 
@@ -84,7 +82,7 @@ export default function Resumo() {
                                             <Stack spacing={1.5} w='100%'>
                                                 {resumo.gestantes.slice(0,4).map((gestante, i)=>{
                                                     return (
-                                                        <Tooltip label={gestante.ubs} hasArrow arrowSize={10}>
+                                                        <Tooltip label={gestante.ubs} key={i} hasArrow arrowSize={10}>
                                                             <HStack><Progress value={Number((gestante.consultas/gestante.total*100).toFixed(0))} colorScheme={colors[i]} size='xg' w='60%' h='1em'/><Text fontSize='70%'>{(gestante.consultas/gestante.total*100).toFixed(0)}% Atingido</Text></HStack>
                                                         </Tooltip>
                                                     )
@@ -100,7 +98,7 @@ export default function Resumo() {
                                             <Stack spacing={1.5} w='100%'>
                                                 {resumo.gestantes.slice(0,4).map((gestante, i)=>{
                                                     return (
-                                                        <Tooltip label={gestante.ubs} hasArrow arrowSize={10}>
+                                                        <Tooltip label={gestante.ubs} key={i} hasArrow arrowSize={10}>
                                                             <HStack><Progress value={Number((gestante.exames/gestante.total*100).toFixed(0))} colorScheme={colors[i]} size='xg' w='60%' h='1em'/><Text fontSize='70%'>{(gestante.exames/gestante.total*100).toFixed(0)}% Atingido</Text></HStack>
                                                         </Tooltip>
                                                     )
@@ -116,7 +114,7 @@ export default function Resumo() {
                                             <Stack spacing={1.5} w='100%'>
                                                 {resumo.gestantes.slice(0,4).map((gestante, i)=>{
                                                     return (
-                                                        <Tooltip label={gestante.ubs} hasArrow arrowSize={10}>
+                                                        <Tooltip label={gestante.ubs} key={i} hasArrow arrowSize={10}>
                                                             <HStack><Progress value={Number((gestante.odonto/gestante.total*100).toFixed(0))} colorScheme={colors[i]} size='xg' w='60%' h='1em'/><Text fontSize='70%'>{(gestante.odonto/gestante.total*100).toFixed(0)}% Atingido</Text></HStack>
                                                         </Tooltip>
                                                     )
@@ -132,7 +130,7 @@ export default function Resumo() {
                                             <Stack spacing={1.5} w='100%'>
                                                 {resumo.mulheres.slice(0,4).map((mulher, i)=>{
                                                     return (
-                                                        <Tooltip label={mulher.ubs} hasArrow arrowSize={10}>
+                                                        <Tooltip label={mulher.ubs} key={i} hasArrow arrowSize={10}>
                                                             <HStack><Progress value={Number((mulher.ok/mulher.total*100).toFixed(0))} colorScheme={colors[i]} size='xg' w='60%' h='1em'/><Text fontSize='70%'>{(mulher.ok/mulher.total*100).toFixed(0)}% Atingido</Text></HStack>
                                                         </Tooltip>
                                                     )
@@ -146,10 +144,10 @@ export default function Resumo() {
                                     <HStack fontWeight='bold'>
                                             <Icon fontSize='4em' m='-0.3em'><path fill='currentColor' d={mdiTeddyBear} height='18em'></path> </Icon>
                                             <Stack spacing={1.5} w='100%'>
-                                                {resumo.mulheres.slice(0,4).map((mulher, i)=>{
+                                                {resumo.criancas.slice(0,4).map((crianca, i)=>{
                                                     return (
-                                                        <Tooltip label={mulher.ubs} hasArrow arrowSize={10}>
-                                                            <HStack><Progress value={Number((mulher.ok/mulher.total*100).toFixed(0))} colorScheme={colors[i]} size='xg' w='60%' h='1em'/><Text fontSize='70%'>{(mulher.ok/mulher.total*100).toFixed(0)}% Atingido</Text></HStack>
+                                                        <Tooltip label={crianca.ubs} key={i} hasArrow arrowSize={10}>
+                                                            <HStack><Progress value={Number((crianca.ok/crianca.total*100).toFixed(0))} colorScheme={colors[i]} size='xg' w='60%' h='1em'/><Text fontSize='70%'>{(crianca.ok/crianca.total*100).toFixed(0)}% Atingido</Text></HStack>
                                                         </Tooltip>
                                                     )
                                                 })}                                            
