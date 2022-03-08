@@ -69,7 +69,7 @@ export default function Resumo() {
                                 <Box m='.5em' p='1em' borderRadius='.8em' w='48.2%' bg='white'>
                                     <Center>Diabéticos</Center>
                                     <Chart chartType="ColumnChart" width='100%' height='400px'
-                                    data={ [ ['UBS', '% Atingido', {role: "style"}], ...resumo.diabeticos.map((d, i)=>([d[0], d[1], colors[i]])) ] }
+                                    data={ [ ['UBS', '% Atingido', {role: "style"}], ...resumo.diabeticos_total.map((d, i)=>([d[0], d[1], colors[i]])) ] }
                                      />
                                 </Box>
                             </HStack>

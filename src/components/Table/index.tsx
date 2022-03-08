@@ -4,11 +4,12 @@ import { matchSorter } from 'match-sorter'
 import TableLayout from "./TableLayout";
 
 const TableInstance = ({ tableData, columnsData, icon, title }) => {
+
     const [columns, data] = useMemo(
       () => {
         return [columnsData, tableData];
       },
-      [tableData]
+      [tableData, columnsData]
     );
 
     // Define a default UI for filtering

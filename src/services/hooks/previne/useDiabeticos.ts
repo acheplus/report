@@ -20,18 +20,19 @@ export async function getDiabeticos(): Promise<any> {
 
     // const totalCount = Number(headers['x-total-count'])
 
-    const diabeticos = data.diabeticos.map(diabetico => {
+    const diabeticos: Array<Diabetico> = data.diabeticos.map(diabetico => {
         return {
             // id: diabetico.id,
-            ubs: diabetico.no_unidade_saude,
+            ubs: String(diabetico.no_unidade_saude),
             ine: Number(diabetico.nu_ine),
-            cns: diabetico.nu_cns,
-            cpf: diabetico.nu_cpf,
-            nome: diabetico.no_cidadao,
-            ok: diabetico.pa,
-            obs: diabetico.obs,
+            cns: String(diabetico.nu_cns),
+            cpf: diabetico.nu_cpf ? String(diabetico.nu_cpf) : "",
+            nome: String(diabetico.no_cidadao),
+            ok: Boolean(diabetico.pa),
+            obs: String(diabetico.obs),
         }
     })
+    console.log(diabeticos)
     return {
         diabeticos
     }

@@ -1,5 +1,4 @@
 import { useQuery } from 'react-query'
-import Diabeticos from '../../../pages/previne/indicador/diabeticos'
 import { api } from '../../../services/apiClient'
 
 type Resumo = {
@@ -24,7 +23,7 @@ type Resumo = {
     }],
     hipertensosok: Array<[string, any]>,
     hipertensos_total: Array<[string, any]>,
-    diabeticos: Array<[string, any]>,
+    diabeticos_total: Array<[string, any]>,
     populacao_ibge: number,
     cadastros_esus: number,
 }
@@ -57,7 +56,7 @@ export async function getResumo(): Promise<any> {
 
     const criancas = data.criancas.map(crianca => {
         return {
-            ubs: crianca.UBS ? crianca.UBS : 'SEM VINCULO',
+            ubs: crianca.ubs ? crianca.ubs : 'SEM VINCULO',
             ok: crianca.ok,
             total: crianca.total
         }
@@ -77,7 +76,7 @@ export async function getResumo(): Promise<any> {
         ]
     })
 
-    const diabeticos = data.diabeticos.map(diabetico => {
+    const diabeticos_total = data.diabeticos_resumo.map(diabetico => {
         return [
             diabetico.ubs ? diabetico.ubs : 'SEM VINCULO',
             diabetico.ok/diabetico.total*100,
@@ -90,7 +89,7 @@ export async function getResumo(): Promise<any> {
         criancas: criancas,
         hipertensosok: [["UBS", "Qtd"], ...hipertensosok].slice(0,4),
         hipertensos_total: hipertensos_total.slice(0,4),
-        diabeticos: diabeticos.slice(0,4),
+        diabeticos_total: diabeticos_total.slice(0,4),
         populacao_ibge: data.populacao_ibge,
         cadastros_esus: data.cadastros_esus
     }
