@@ -87,9 +87,9 @@ export async function getResumo(): Promise<any> {
         gestantes: gestantes,
         mulheres: mulheres,
         criancas: criancas,
-        hipertensosok: [["UBS", "Qtd"], ...hipertensosok].slice(0,4),
-        hipertensos_total: hipertensos_total.slice(0,4),
-        diabeticos_total: diabeticos_total.slice(0,4),
+        hipertensosok: [["UBS", "Qtd"], ...hipertensosok],
+        hipertensos_total: hipertensos_total,
+        diabeticos_total: diabeticos_total,
         populacao_ibge: data.populacao_ibge,
         cadastros_esus: data.cadastros_esus
     }

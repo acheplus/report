@@ -62,25 +62,25 @@ export default function Resumo() {
                                 <Box m='.5em' p='1em' borderRadius='.8em' w='48.2%' bg='white'>
                                     <Center>HIPERTENSOS</Center>
                                     <Chart chartType="ColumnChart" width='100%' height='400px'
-                                    data={ [ ['UBS', '% Atingido', {role: "style"}], ...resumo.hipertensos_total.map((d, i)=>([d[0], d[1], colors[i]])) ] }
+                                    data={ [ ['UBS', '% Atingido', {role: "style"}], ...resumo.hipertensos_total.sort((a,b) => ((a[1]-b[1]))*-1).map((d, i)=>([d[0], d[1], colors[i]])) ] }
                                      />
                                 </Box>
 
                                 <Box m='.5em' p='1em' borderRadius='.8em' w='48.2%' bg='white'>
                                     <Center>Diabéticos</Center>
                                     <Chart chartType="ColumnChart" width='100%' height='400px'
-                                    data={ [ ['UBS', '% Atingido', {role: "style"}], ...resumo.diabeticos_total.map((d, i)=>([d[0], d[1], colors[i]])) ] }
+                                    data={ [ ['UBS', '% Atingido', {role: "style"}], ...resumo.diabeticos_total.sort((a,b) => (a[1]-b[1])*-1).map((d, i)=>([d[0], d[1], colors[i]])) ] }
                                      />
                                 </Box>
                             </HStack>
 
                             <HStack>
-                                <Box m='.5em' p='1em' borderRadius='.8em' bgColor='#1b9b4e' w='19%' color='white'>
+                                <Box m='.5em' p='1em' borderRadius='.8em' bgColor='#1b9b4e' w='19%' h='100%' color='white'>
                                     <Center>PRÉ-NATAL - Consultas</Center>
-                                    <HStack fontWeight='bold'>
+                                    <HStack fontWeight='bold' m='0.4em'>
                                             <Icon fontSize='4em' m='-0.3em'><path fill='currentColor' d={mdiHumanPregnant} height='18em'></path> </Icon>
                                             <Stack spacing={1.5} w='100%'>
-                                                {resumo.gestantes.slice(0,4).map((gestante, i)=>{
+                                                {resumo.gestantes.sort((a,b) => ((a.consultas/a.total)-(b.consultas/b.total))*-1).map((gestante, i)=>{
                                                     return (
                                                         <Tooltip label={gestante.ubs} key={i} hasArrow arrowSize={10}>
                                                             <HStack><Progress value={Number((gestante.consultas/gestante.total*100).toFixed(0))} colorScheme={colors[i]} size='xg' w='60%' h='1em'/><Text fontSize='70%'>{(gestante.consultas/gestante.total*100).toFixed(0)}% Atingido</Text></HStack>
@@ -91,12 +91,12 @@ export default function Resumo() {
                                     </HStack>
                                 </Box>
 
-                                <Box m='.5em' p='1em' borderRadius='.8em' bgColor='#1b9b4e' w='19%' color='white'>
+                                <Box m='.5em' p='1em' borderRadius='.8em' bgColor='#1b9b4e' w='19%' h='100%' color='white'>
                                     <Center>PRÉ-NATAL - Exames</Center>
-                                    <HStack fontWeight='bold'>
+                                    <HStack fontWeight='bold' m='0.4em'>
                                             <Icon fontSize='4em' m='-0.3em'><path fill='currentColor' d={mdiHumanPregnant} height='18em'></path> </Icon>
                                             <Stack spacing={1.5} w='100%'>
-                                                {resumo.gestantes.slice(0,4).map((gestante, i)=>{
+                                                {resumo.gestantes.sort((a,b) => ((a.exames/a.total)-(b.exames/b.total))*-1).map((gestante, i)=>{
                                                     return (
                                                         <Tooltip label={gestante.ubs} key={i} hasArrow arrowSize={10}>
                                                             <HStack><Progress value={Number((gestante.exames/gestante.total*100).toFixed(0))} colorScheme={colors[i]} size='xg' w='60%' h='1em'/><Text fontSize='70%'>{(gestante.exames/gestante.total*100).toFixed(0)}% Atingido</Text></HStack>
@@ -107,12 +107,12 @@ export default function Resumo() {
                                     </HStack>
                                 </Box>
 
-                                <Box m='.5em' p='1em' borderRadius='.8em' bgColor='#1b9b4e' w='19%' color='white'>
+                                <Box m='.5em' p='1em' borderRadius='.8em' bgColor='#1b9b4e' w='19%' h='100%' color='white'>
                                     <Center>PRÉ-NATAL - Odonto</Center>
-                                    <HStack fontWeight='bold'>
+                                    <HStack fontWeight='bold' m='0.4em'>
                                             <Icon fontSize='4em' m='-0.3em'><path fill='currentColor' d={mdiHumanPregnant} height='18em'></path> </Icon>
                                             <Stack spacing={1.5} w='100%'>
-                                                {resumo.gestantes.slice(0,4).map((gestante, i)=>{
+                                                {resumo.gestantes.sort((a,b) => ((a.odonto/a.total)-(b.odonto/b.total))*-1).map((gestante, i)=>{
                                                     return (
                                                         <Tooltip label={gestante.ubs} key={i} hasArrow arrowSize={10}>
                                                             <HStack><Progress value={Number((gestante.odonto/gestante.total*100).toFixed(0))} colorScheme={colors[i]} size='xg' w='60%' h='1em'/><Text fontSize='70%'>{(gestante.odonto/gestante.total*100).toFixed(0)}% Atingido</Text></HStack>
@@ -123,12 +123,12 @@ export default function Resumo() {
                                     </HStack>
                                 </Box>
 
-                                <Box m='.5em' p='1em' borderRadius='.8em' bgColor='#1b9b4e' w='19%' color='white'>
+                                <Box m='.5em' p='1em' borderRadius='.8em' bgColor='#1b9b4e' w='19%' h='100%' color='white'>
                                     <Center>SAÚDE DA MULHER</Center>
-                                    <HStack fontWeight='bold'>
-                                            <Icon fontSize='4em' m='-0.3em'><path fill='currentColor' d={mdiHumanFemale} height='18em'></path> </Icon>
+                                    <HStack fontWeight='bold' m='0.4em'>
+                                            <Icon fontSize='4em' m='-0.2em'><path fill='currentColor' d={mdiHumanFemale} height='18em'></path> </Icon>
                                             <Stack spacing={1.5} w='100%'>
-                                                {resumo.mulheres.slice(0,4).map((mulher, i)=>{
+                                                {resumo.mulheres.sort((a,b) => ((a.ok/a.total)-(b.ok/b.total))*-1).map((mulher, i)=>{
                                                     return (
                                                         <Tooltip label={mulher.ubs} key={i} hasArrow arrowSize={10}>
                                                             <HStack><Progress value={Number((mulher.ok/mulher.total*100).toFixed(0))} colorScheme={colors[i]} size='xg' w='60%' h='1em'/><Text fontSize='70%'>{(mulher.ok/mulher.total*100).toFixed(0)}% Atingido</Text></HStack>
@@ -139,15 +139,15 @@ export default function Resumo() {
                                     </HStack>
                                 </Box>
 
-                                <Box m='.5em' p='1em' borderRadius='.8em' bgColor='#1b9b4e' w='19%' color='white'>
+                                <Box m='.5em' p='1em' borderRadius='.8em' bgColor='#1b9b4e' w='19%' h='100%' color='white'>
                                     <Center>SAÚDE DA CRIANÇA</Center>
-                                    <HStack fontWeight='bold'>
-                                            <Icon fontSize='4em' m='-0.3em'><path fill='currentColor' d={mdiTeddyBear} height='18em'></path> </Icon>
+                                    <HStack fontWeight='bold' m='0.4em'>
+                                            <Icon fontSize='4em' m='-0.1em'><path fill='currentColor' d={mdiTeddyBear} height='18em'></path> </Icon>
                                             <Stack spacing={1.5} w='100%'>
-                                                {resumo.criancas.slice(0,4).map((crianca, i)=>{
+                                                {resumo.criancas.sort((a,b) => ((a.ok/a.total)-(b.ok/b.total))*-1).map((crianca, i)=>{
                                                     return (
                                                         <Tooltip label={crianca.ubs} key={i} hasArrow arrowSize={10}>
-                                                            <HStack><Progress value={Number((crianca.ok/crianca.total*100).toFixed(0))} colorScheme={colors[i]} size='xg' w='60%' h='1em'/><Text fontSize='70%'>{(crianca.ok/crianca.total*100).toFixed(0)}% Atingido</Text></HStack>
+                                                            <HStack><Progress value={Number((crianca.ok/crianca.total*100).toFixed(0))} colorScheme={colors[i]} size='xg' w='55%' h='1em'/><Text fontSize='70%'>{(crianca.ok/crianca.total*100).toFixed(0)}% Atingido</Text></HStack>
                                                         </Tooltip>
                                                     )
                                                 })}                                            
