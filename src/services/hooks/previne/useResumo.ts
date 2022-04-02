@@ -21,6 +21,16 @@ type Resumo = {
         ok: number;
         total: number;
     }],
+    hipertensos: [{
+        ubs: string,
+        ok: number,
+        total: number,
+    }],
+    diabeticos: [{
+        ubs: string,
+        ok: number,
+        total: number,
+    }],
     hipertensosok: Array<[string, any]>,
     hipertensos_total: Array<[string, any]>,
     diabeticos_total: Array<[string, any]>,
@@ -62,6 +72,22 @@ export async function getResumo(): Promise<any> {
         }
     })
 
+    const hipertensos = data.hipertensos.map(hipertenso => {
+        return {
+            ubs: hipertenso.UBS ? hipertenso.UBS : 'SEM VINCULO',
+            ok: hipertenso.ok,
+            total: hipertenso.total
+        }
+    })
+
+    const diabeticos = data.diabeticos_resumo.map(diabetico => {
+        return {
+            ubs: diabetico.ubs ? diabetico.ubs : 'SEM VINCULO',
+            ok: diabetico.ok,
+            total: diabetico.total,
+        }
+    })
+
     const hipertensosok = data.hipertensos.map(hipertenso => {
         return [
             hipertenso.UBS ? hipertenso.UBS : 'SEM VINCULO',
@@ -88,6 +114,8 @@ export async function getResumo(): Promise<any> {
         mulheres: mulheres,
         criancas: criancas,
         hipertensosok: [["UBS", "Qtd"], ...hipertensosok],
+        hipertensos: hipertensos,
+        diabeticos: diabeticos,
         hipertensos_total: hipertensos_total,
         diabeticos_total: diabeticos_total,
         populacao_ibge: data.populacao_ibge,

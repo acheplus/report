@@ -17,6 +17,10 @@ export default function Resumo() {
 
     const colors = {0:'pink', 1:'purple', 2:'teal', 3:'orange'}
 
+    function calcPercent(arr){
+        return arr[1]/arr[0] * 100
+    }
+
     useEffect(() => {
         setResumo(apiResponse?.resumo)
     }, [apiResponse])
@@ -56,6 +60,22 @@ export default function Resumo() {
                                 m={0}>CADASTROS ESUS</Center>
                                 <Center bgColor='white' color='green' p='1%' borderEndRadius='.6em' w='12.5%'
                                 m={0}>{resumo.cadastros_esus.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}</Center>
+                            </HStack>
+
+                            <HStack>
+                                <Box m='.5em' p='1em' borderRadius='.8em' w='48.2%' bg='white'>
+                                    <Center>Município</Center>
+                                    <Chart chartType="ColumnChart" width='100%' height='400px'
+                                           data={ [ ['Indicador', 'Total' ],
+                                               ['I1', calcPercent(resumo.gestantes.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.consultas ]}), [0,0]))],
+                                               ['I2', calcPercent(resumo.gestantes.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.exames ]}), [0,0]))],
+                                               ['I3', calcPercent(resumo.gestantes.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.odonto ]}), [0,0]))],
+                                               ['I4', calcPercent(resumo.mulheres.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.ok ]}), [0,0]))],
+                                               ['I5',calcPercent(resumo.criancas.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.ok ]}), [0,0]))],
+                                               ['I6', calcPercent(resumo.hipertensos.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.ok ]}), [0,0]))],
+                                               ['I7', calcPercent(resumo.diabeticos.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.ok ]}), [0,0]))] ] }
+                                    />
+                                </Box>
                             </HStack>
 
                             <HStack>
