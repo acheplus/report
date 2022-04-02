@@ -64,8 +64,7 @@ export default function Resumo() {
 
                             <HStack>
                                 <Box m='.5em' p='1em' borderRadius='.8em' w='97.5%' bg='white'>
-                                    <Center>Percentual alcançado no Município</Center>
-                                    <Chart chartType="ColumnChart" width='100%' height='400px'
+                                    <Chart chartType="ComboChart" width='100%' height='500px'
                                            data={ [ ['Indicador', 'Parametro', 'Meta', 'Alcançado' ],
                                                ['I1', 100, 45, calcPercent(resumo.gestantes.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.consultas ]}), [0,0]))],
                                                ['I2', 100, 60, calcPercent(resumo.gestantes.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.exames ]}), [0,0]))],
@@ -74,7 +73,9 @@ export default function Resumo() {
                                                ['I5', 100, 95, calcPercent(resumo.criancas.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.ok ]}), [0,0]))],
                                                ['I6', 100, 50, calcPercent(resumo.hipertensos.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.ok ]}), [0,0]))],
                                                ['I7', 100, 50, calcPercent(resumo.diabeticos.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.ok ]}), [0,0]))] ] }
-                                    />
+                                    options={{seriesType: 'bars', series: { 2: { type: "line" }},
+                                        vAxis: { title: "%" }, hAxis: { title: "Indicadores" },
+                                        title: "Percentual alcançado no Município"}} />
                                 </Box>
                             </HStack>
 
