@@ -63,17 +63,17 @@ export default function Resumo() {
                             </HStack>
 
                             <HStack>
-                                <Box m='.5em' p='1em' borderRadius='.8em' w='48.2%' bg='white'>
-                                    <Center>Município</Center>
+                                <Box m='.5em' p='1em' borderRadius='.8em' w='97.5%' bg='white'>
+                                    <Center>Percentual alcançado no Município</Center>
                                     <Chart chartType="ColumnChart" width='100%' height='400px'
-                                           data={ [ ['Indicador', 'Total' ],
-                                               ['I1', calcPercent(resumo.gestantes.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.consultas ]}), [0,0]))],
-                                               ['I2', calcPercent(resumo.gestantes.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.exames ]}), [0,0]))],
-                                               ['I3', calcPercent(resumo.gestantes.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.odonto ]}), [0,0]))],
-                                               ['I4', calcPercent(resumo.mulheres.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.ok ]}), [0,0]))],
-                                               ['I5',calcPercent(resumo.criancas.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.ok ]}), [0,0]))],
-                                               ['I6', calcPercent(resumo.hipertensos.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.ok ]}), [0,0]))],
-                                               ['I7', calcPercent(resumo.diabeticos.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.ok ]}), [0,0]))] ] }
+                                           data={ [ ['Indicador', 'Parametro', 'Meta', 'Alcançado' ],
+                                               ['I1', 100, 45, calcPercent(resumo.gestantes.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.consultas ]}), [0,0]))],
+                                               ['I2', 100, 60, calcPercent(resumo.gestantes.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.exames ]}), [0,0]))],
+                                               ['I3', 100, 60, calcPercent(resumo.gestantes.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.odonto ]}), [0,0]))],
+                                               ['I4', 100, 40, calcPercent(resumo.mulheres.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.ok ]}), [0,0]))],
+                                               ['I5', 100, 95, calcPercent(resumo.criancas.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.ok ]}), [0,0]))],
+                                               ['I6', 100, 50, calcPercent(resumo.hipertensos.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.ok ]}), [0,0]))],
+                                               ['I7', 100, 50, calcPercent(resumo.diabeticos.reduce((([acc, acc1], ubs) => { return [ acc+= ubs.total, acc1+=ubs.ok ]}), [0,0]))] ] }
                                     />
                                 </Box>
                             </HStack>
