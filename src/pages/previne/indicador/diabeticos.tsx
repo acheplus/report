@@ -61,8 +61,7 @@ export default function Diabeticos() {
                                     },
                                     {
                                         Header: 'Nome',
-                                        accessor: 'nome',
-                                        Filter: SelectColumnFilter
+                                        accessor: 'nome'
                                     },
                                     {
                                         Header: 'Nasc.',
