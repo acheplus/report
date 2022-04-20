@@ -37,10 +37,14 @@ const TableLayout = ({
             <Table {...getTableProps()} variant='striped' colorScheme='green' size='sm'>
                 <Thead>
                 {headerGroups.map((headerGroup, index) => (
-                    <Tr key={index} {...headerGroup.getHeaderGroupProps()} bgColor={"#1B9B4E"}>
+                    <Tr key={index} {...headerGroup.getHeaderGroupProps()} 
+                    color='blue'
+                    textColor='blue'
+                    bgColor={"#1B9B4E"}>
                     {headerGroup.headers.map((column, i) => (
                         <Th key={i} {...column.getHeaderProps(column.getSortByToggleProps())}
-                            isNumeric={column.isNumeric} textColor='white'>
+                            isNumeric={column.isNumeric} 
+                            textColor='white'>
                             {column.render('Header')}
                             <chakra.span pl='4'>
                                 {column.isSorted ? (

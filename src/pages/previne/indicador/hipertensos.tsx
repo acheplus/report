@@ -9,6 +9,7 @@ import TableInstance from "../../../components/Table";
 import { useHipertensos } from "../../../services/hooks/previne/useHipertensos";
 import { withSSRAuth } from "../../../utils/withSSRAuth";
 import { SpinnerLogo } from "../../../components/Animation/SpinnerLogo";
+import DefaultColumnFilter from "../../../components/Filter/DefaultColumnFilter";
 
 
 export default function Hipertensos() {
@@ -62,6 +63,10 @@ export default function Hipertensos() {
                                     {
                                         Header: 'Nome',
                                         accessor: 'nome'
+                                    },
+                                    {
+                                        Header: 'Nasc.',
+                                        accessor: 'nascimento'
                                     },
                                     {
                                         Header: 'OK?',

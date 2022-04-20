@@ -6,6 +6,7 @@ type Diabetico = {
     ine: number;
     cns: string;
     cpf: string;
+    nascimento: string;
     nome: string;
     ok: boolean;
     obs: string;
@@ -28,6 +29,9 @@ export async function getDiabeticos(): Promise<any> {
             cns: String(diabetico.nu_cns),
             cpf: diabetico.nu_cpf ? String(diabetico.nu_cpf) : "",
             nome: String(diabetico.no_cidadao),
+            nascimento: new Date(diabetico.dt_nascimento).toLocaleDateString('pt-BR', {
+                timeZone: 'UTC'
+            }),
             ok: Boolean(diabetico.pa),
             obs: String(diabetico.obs),
         }

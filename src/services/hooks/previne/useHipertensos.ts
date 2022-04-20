@@ -7,6 +7,7 @@ type Hipertenso = {
     cns: string;
     cpf: string;
     nome: string;
+    nascimento: string;
     ok: boolean;
     obs: string;
 }
@@ -28,6 +29,9 @@ export async function getHipertensos(): Promise<any> {
             cns: hipertenso.nu_cns,
             cpf: hipertenso.nu_cpf,
             nome: hipertenso.no_cidadao,
+            nascimento: new Date(hipertenso.dt_nascimento).toLocaleDateString('pt-BR', {
+                timeZone: 'UTC'
+            }),
             ok: hipertenso.pa,
             obs: hipertenso.obs,
         }

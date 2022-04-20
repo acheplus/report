@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import {useTable, useSortBy, useFilters} from 'react-table';
 import { matchSorter } from 'match-sorter'
 import TableLayout from "./TableLayout";
+import DefaultColumnFilter from "../Filter/DefaultColumnFilter";
 
 const TableInstance = ({ tableData, columnsData, icon, title }) => {
 
@@ -11,24 +12,6 @@ const TableInstance = ({ tableData, columnsData, icon, title }) => {
       },
       [tableData, columnsData]
     );
-
-    // Define a default UI for filtering
-    function DefaultColumnFilter({
-        column: { filterValue, preFilteredRows, setFilter },
-    }) {
-        const count = preFilteredRows.length
-    
-        return (
-            <></>
-        // <input
-        //     value={filterValue || ''}
-        //     onChange={e => {
-        //     setFilter(e.target.value || undefined) // Set undefined to remove the filter entirely
-        //     }}
-        //     placeholder={`Procurar ...`}
-        // />
-        )
-    }
 
     function fuzzyTextFilterFn(rows: any[], id, filterValue) {
         return matchSorter(rows, filterValue, { keys: [row => row.values[id]] })
